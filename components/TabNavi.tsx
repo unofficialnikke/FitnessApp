@@ -4,7 +4,7 @@ import Calendar from './Calendar';
 import Frontpage from './Frontpage';
 import Trainings from './Trainings';
 import { View } from 'react-native';
-import { styles } from '../styles/Style';
+import { styles } from '../styles/FrontpageStyle';
 import { useNavigation } from '@react-navigation/native';
 
 function HomeScreen() {
@@ -43,9 +43,9 @@ export default function TabNavi() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName: React.ComponentProps<typeof Ionicons>['name'] = 'add-outline';
 
-                    if (route.name === 'Home') {
+                    if (route.name === 'Etusivu') {
                         iconName = focused ? 'home' : 'home-outline';
-                    } else if (route.name === 'Calendar') {
+                    } else if (route.name === 'Kalenteri') {
                         iconName = focused ? 'calendar' : 'calendar-outline';
                     } else {
                         iconName = focused ? 'barbell' : 'barbell-outline';
@@ -59,9 +59,9 @@ export default function TabNavi() {
                 tabBarActiveBackgroundColor: '#414141',
             })}
         >
-            <Tab.Screen name="Frontpage" component={HomeScreen} />
-            <Tab.Screen name="Calendar" component={CalendarScreen} />
-            <Tab.Screen name="Trainings" component={TrainingsScreen} />
+            <Tab.Screen name="Etusivu" component={HomeScreen} />
+            <Tab.Screen name="Kalenteri" component={CalendarScreen} />
+            <Tab.Screen name="Harjoitukset" component={TrainingsScreen} />
         </Tab.Navigator>
     )
 }
