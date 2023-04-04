@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { View, Text, FlatList, ScrollView } from 'react-native';
+import { View, Text, FlatList, ScrollView, Alert } from 'react-native';
 import { Input, Button, Tooltip } from '@rneui/themed';
 import { useState } from 'react';
-import { styles } from '../styles/NewTraining';
+import { styles } from '../styles/NewTrainingStyle';
 
 type Training = [string, string, string, string]
 
@@ -22,11 +22,16 @@ export default function NewTraining({ navigation }) {
 
     const addTraining = () => {
         const newTraining: Training = [trainingName, weight, repetitions, amount];
+        if (trainingName === "") {
+            Alert.alert("Virhe", "Liikkeen nimi ei voi olla tyhjä")
+            return
+        }
         setTrainingList([...trainingList, newTraining]);
         setTrainingName("");
         setWeight("");
         setRepetitions("");
         setAmount("");
+
     };
 
     const addTrainingList = () => {
@@ -34,11 +39,14 @@ export default function NewTraining({ navigation }) {
             name: trainingListName,
             training: trainingList
         };
+        if (trainingListName === "") {
+            Alert.alert("Virhe", "Harjoituksen nimi ei voi olla tyhjä")
+            return
+        }
         setTrainingLists([...trainingLists, newTrainingList])
         setTrainingListName("")
         setTrainingList([])
     }
-
 
     return (
         <View style={styles.container}>
@@ -53,6 +61,7 @@ export default function NewTraining({ navigation }) {
             <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 30 }}>Anna harjoitukselle nimi:</Text>
             <Input
                 style={styles.input}
+
                 placeholder="Harjoituksen nimi"
                 value={trainingListName}
                 onChangeText={t => {

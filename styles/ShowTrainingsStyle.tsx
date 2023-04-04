@@ -6,13 +6,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    text: {
-        fontSize: 18
-    },
-    input: {
-        textAlign: "center",
-    },
     map: {
-
+        fontSize: 20,
+        textAlign: "center",
+        marginBottom: 4,
+        marginTop: 4
     }
 })

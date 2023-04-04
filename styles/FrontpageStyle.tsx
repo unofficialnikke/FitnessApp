@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     button: {
         borderRadius: 10,
@@ -20,5 +20,11 @@ export const styles = StyleSheet.create({
     },
     headerText: {
         fontSize: 22,
+    },
+    map: {
+        fontSize: 20,
+        textAlign: "center",
+        marginBottom: 4,
+        marginTop: 4
     }
 })
