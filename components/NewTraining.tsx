@@ -29,7 +29,7 @@ export default function NewTraining({ navigation }) {
     const [visible, setVisible] = useState(false)
 
     const addTraining = async () => {
-        if (trainingName === "" || trainingName.toLocaleLowerCase() === "tyhjä") {
+        if (trainingName === "" || trainingName.toLowerCase() === "tyhjä") {
             Alert.alert("Virhe", "Liikkeen nimi ei voi olla tyhjä")
             return
         }
@@ -54,7 +54,7 @@ export default function NewTraining({ navigation }) {
     };
 
     const addTrainingList = async () => {
-        if (trainingListName === "" || trainingListName.toLocaleLowerCase() == "tyhjä") {
+        if (trainingListName === "" || trainingListName.toLowerCase() == "tyhjä") {
             Alert.alert("Virhe", "Harjoituksen nimi ei voi olla tyhjä")
             return
         }
@@ -70,9 +70,11 @@ export default function NewTraining({ navigation }) {
             console.error("Error adding training list: ", error);
         }
         setTrainingListName("")
+        setVisible(true)
     };
 
     useEffect(() => {
+        setVisible(false)
         const q = query(collection(db, 'trainingList'));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const trainingListData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -87,6 +89,7 @@ export default function NewTraining({ navigation }) {
         <View style={styles.container}>
             <Button
                 style={{ padding: 10 }}
+                size="lg"
                 type="solid"
                 color="#414141"
                 title="Katso lisätyt harjoituksesi"
@@ -103,57 +106,63 @@ export default function NewTraining({ navigation }) {
                     setTrainingListName(t)
                 }}
             />
-            <Text style={{ fontSize: 20, marginBottom: 12 }}>Lisää liikkeet:</Text>
-            <Input
-                style={styles.input}
-                placeholder="liikkeen nimi.."
-                value={trainingName}
-                onChangeText={(t) => {
-                    setTrainingName(t)
-                }}
-            /><Input
-                style={styles.input}
-                placeholder="painot (kg).."
-                value={weight}
-                keyboardType="numeric"
-                onChangeText={(t) => {
-                    setWeight(t)
-                }}
-            /><Input
-                style={styles.input}
-                placeholder="sarjan pituus.."
-                value={repetitions}
-                keyboardType="numeric"
-                onChangeText={(t) => {
-                    setRepetitions(t)
-                }}
-            /><Input
-                style={styles.input}
-                placeholder="sarjojen määrä.."
-                value={amount}
-                keyboardType="numeric"
-                onChangeText={t => {
-                    setAmount(t)
-                }}
-            />
-            <Button
-                title="Lisää liike"
-                style={{ padding: 10 }}
-                type="solid"
-                color="orange"
-                onPress={() => {
-                    addTraining()
-                }}
-            />
             <Button
                 title="Lisää harjoitus"
                 style={{ padding: 10 }}
+                size="lg"
                 type="solid"
                 color="orange"
                 onPress={() => {
                     addTrainingList()
                 }}
             />
+            {visible && (
+                <View style={styles.innerContainer}>
+                    <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 15 }}>Lisää liikkeet:</Text>
+                    <Input
+                        style={styles.input}
+                        placeholder="liikkeen nimi.."
+                        value={trainingName}
+                        onChangeText={(t) => {
+                            setTrainingName(t)
+                        }}
+                    /><Input
+                        style={styles.input}
+                        placeholder="painot (kg).."
+                        value={weight}
+                        keyboardType="numeric"
+                        onChangeText={(t) => {
+                            setWeight(t)
+                        }}
+                    /><Input
+                        style={styles.input}
+                        placeholder="sarjan pituus.."
+                        value={repetitions}
+                        keyboardType="numeric"
+                        onChangeText={(t) => {
+                            setRepetitions(t)
+                        }}
+                    /><Input
+                        style={styles.input}
+                        placeholder="sarjojen määrä.."
+                        value={amount}
+                        keyboardType="numeric"
+                        onChangeText={t => {
+                            setAmount(t)
+                        }}
+                    />
+                    <Button
+                        title="Lisää liike"
+                        size="lg"
+                        style={{ padding: 10 }}
+                        type="solid"
+                        color="orange"
+                        onPress={() => {
+                            addTraining()
+                        }}
+                    />
+                </View>
+            )}
         </View >
     )
 }

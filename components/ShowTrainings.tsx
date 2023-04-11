@@ -1,22 +1,25 @@
 import * as React from 'react';
 import { View, FlatList, Text } from "react-native";
 import { styles } from '../styles/ShowTrainingsStyle';
-import NewTraining from './NewTraining';
 
 export default function ShowTrainings({ route, navigation }) {
     const trainings = route.params
 
+    const deleteTraining = (key) => {
+
+    }
+
     const renderItem = ({ item }) => (
         <View>
-            <Text style={{ fontSize: 24, textAlign: "center", marginBottom: 5, marginTop: 5 }}>{item.name}</Text>
+            <Text onPress={() => deleteTraining(item)} style={{ textAlign: "center", fontSize: 24, color: "blue" }}>delete</Text>
+            <Text style={styles.listName}>{item.name}</Text>
             <FlatList
                 data={item.trainings}
-                ItemSeparatorComponent={listSeparator2}
                 renderItem={({ item }) => (
                     <View>
-                        <Text style={{ fontSize: 20, textAlign: "center" }}>
+                        <Text style={styles.name}>
                             {item.trainingName}</Text>
-                        <Text style={{ fontSize: 18, textAlign: "center" }}>
+                        <Text style={styles.training}>
                             Painot: {item.weight},
                             Toistot: {item.repetitions},
                             Määrä: {item.amount}
@@ -27,21 +30,17 @@ export default function ShowTrainings({ route, navigation }) {
         </View>
     )
 
-    const listSeparator1 = () => {
+    const listSeparator = () => {
         return (
-            <View style={{ height: 2, backgroundColor: "orange", marginTop: 10 }} />
-        );
-    }
-    const listSeparator2 = () => {
-        return (
-            <View style={{ height: 2, backgroundColor: "black" }} />
+            <View style={styles.separator} />
         );
     }
     return (
         <View style={styles.container}>
             <FlatList
+                style={styles.allTrainings}
                 data={trainings}
-                ItemSeparatorComponent={listSeparator1}
+                ItemSeparatorComponent={listSeparator}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
             />

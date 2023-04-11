@@ -12,4 +12,9 @@ export const styles = StyleSheet.create({
     input: {
         textAlign: "center",
     },
+    innerContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: "100%"
+    },
 })

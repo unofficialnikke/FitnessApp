@@ -3,7 +3,7 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from '../styles/FrontpageStyle';
 
-export default function ({ navigation }) {
+export default function Frontpage({ navigation }) {
     const months = ["tammikuu", "helmikuu", "maaliskuu", "huhtikuu", "toukokuu", "kesäkuu",
         "heinäkuu", "elokuu", "syyskuu", "lokakuu", "marraskuu", "joulukuu"
     ];
