@@ -20,7 +20,8 @@
     "moment": "^2.29.4",
     "react": "18.2.0",
     "react-native": "0.71.6",
-    "react-native-uuid": "^2.0.1"
+    "react-native-uuid": "^2.0.1",
+    "use-force-update": "^1.0.11"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

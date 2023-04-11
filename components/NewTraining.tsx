@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { View, Text, Alert, FlatList, SectionList } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { Input, Button } from '@rneui/themed';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import { styles } from '../styles/NewTrainingStyle';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, onSnapshot, updateDoc, arrayUnion, doc, query } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, onSnapshot, updateDoc, arrayUnion, doc, query, deleteDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyANpiYh4Wlo0FwfuygNMqxRbC2KgjnOBEs",
@@ -73,9 +73,23 @@ export default function NewTraining({ navigation }) {
         setVisible(true)
     };
 
+    const deleteTrainingList = async (trainingListId: any) => {
+        try {
+            if (!trainingListId) {
+                console.log('Error deleting training list: no ID provided')
+                return
+            }
+            const docRef = doc(db, 'trainingList', trainingListId)
+            await deleteDoc(docRef)
+            console.log('Training list deleted successfully!')
+
+        } catch (error) {
+            console.log('Error deleting training list: ', error)
+        }
+    }
+
     useEffect(() => {
-        setVisible(false)
-        const q = query(collection(db, 'trainingList'));
+        const q = query(collection(db, "trainingList"));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const trainingListData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
             setTrainingList(trainingListData);
@@ -83,7 +97,7 @@ export default function NewTraining({ navigation }) {
         return () => {
             unsubscribe();
         };
-    }, []);
+    }, [trainingList]);
 
     return (
         <View style={styles.container}>
@@ -94,7 +108,7 @@ export default function NewTraining({ navigation }) {
                 color="#414141"
                 title="Katso lisätyt harjoituksesi"
                 onPress={() => {
-                    navigation.navigate('ShowTrainings', trainingList)
+                    navigation.navigate('ShowTrainings', { trainingList, deleteTrainingList })
                 }}
             />
             <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 30 }}>Anna harjoitukselle nimi:</Text>
