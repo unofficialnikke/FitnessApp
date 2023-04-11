@@ -29,6 +29,10 @@ export default function NewTraining({ navigation }) {
     const [visible, setVisible] = useState(false)
 
     const addTraining = async () => {
+        if (trainingName === "" || trainingName.toLocaleLowerCase() === "tyhjä") {
+            Alert.alert("Virhe", "Liikkeen nimi ei voi olla tyhjä")
+            return
+        }
         try {
             const newTraining = {
                 trainingName: trainingName,
@@ -50,6 +54,10 @@ export default function NewTraining({ navigation }) {
     };
 
     const addTrainingList = async () => {
+        if (trainingListName === "" || trainingListName.toLocaleLowerCase() == "tyhjä") {
+            Alert.alert("Virhe", "Harjoituksen nimi ei voi olla tyhjä")
+            return
+        }
         try {
             const ref = await addDoc(collection(db, "trainingList"), {
                 name: trainingListName,
@@ -74,26 +82,6 @@ export default function NewTraining({ navigation }) {
             unsubscribe();
         };
     }, []);
-
-    const renderItem = ({ item }) => (
-        <View>
-            <Text style={{ fontSize: 22, textAlign: "center", marginBottom: 5, marginTop: 5 }}>{item.name}</Text>
-            <FlatList
-                data={item.trainings}
-                renderItem={({ item }) => (
-                    <View>
-                        <Text style={{ fontSize: 20, textAlign: "center" }}>
-                            Liike: {item.trainingName}</Text>
-                        <Text style={{ fontSize: 18, textAlign: "center" }}>
-                            Painot: {item.weight},
-                            Toistot: {item.repetitions},
-                            Määrä: {item.amount}
-                        </Text>
-                    </View>
-                )}
-            />
-        </View>
-    )
 
     return (
         <View style={styles.container}>
@@ -166,10 +154,6 @@ export default function NewTraining({ navigation }) {
                     addTrainingList()
                 }}
             />
-            <FlatList
-                data={trainingList}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id} />
         </View >
     )
 }

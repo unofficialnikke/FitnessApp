@@ -8,13 +8,14 @@ export default function ShowTrainings({ route, navigation }) {
 
     const renderItem = ({ item }) => (
         <View>
-            <Text style={{ fontSize: 22, textAlign: "center", marginBottom: 5, marginTop: 5 }}>{item.name}</Text>
+            <Text style={{ fontSize: 24, textAlign: "center", marginBottom: 5, marginTop: 5 }}>{item.name}</Text>
             <FlatList
                 data={item.trainings}
+                ItemSeparatorComponent={listSeparator2}
                 renderItem={({ item }) => (
                     <View>
                         <Text style={{ fontSize: 20, textAlign: "center" }}>
-                            Liike: {item.trainingName}</Text>
+                            {item.trainingName}</Text>
                         <Text style={{ fontSize: 18, textAlign: "center" }}>
                             Painot: {item.weight},
                             Toistot: {item.repetitions},
@@ -25,10 +26,22 @@ export default function ShowTrainings({ route, navigation }) {
             />
         </View>
     )
+
+    const listSeparator1 = () => {
+        return (
+            <View style={{ height: 2, backgroundColor: "orange", marginTop: 10 }} />
+        );
+    }
+    const listSeparator2 = () => {
+        return (
+            <View style={{ height: 2, backgroundColor: "black" }} />
+        );
+    }
     return (
         <View style={styles.container}>
             <FlatList
                 data={trainings}
+                ItemSeparatorComponent={listSeparator1}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
             />
