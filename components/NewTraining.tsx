@@ -3,16 +3,17 @@ import { View, Text, Alert } from 'react-native';
 import { Input, Button } from '@rneui/themed';
 import { useState, useEffect, useReducer } from 'react';
 import { styles } from '../styles/NewTrainingStyle';
-import { initializeApp } from 'firebase/app';
+import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, onSnapshot, updateDoc, arrayUnion, doc, query, deleteDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyA4WpVrSlTSM1bpy6faWilQHjKtQwsq51o",
     authDomain: "fitnessapp-7487c.firebaseapp.com",
+    databaseURL: "https://fitnessapp-7487c-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "fitnessapp-7487c",
     storageBucket: "fitnessapp-7487c.appspot.com",
     messagingSenderId: "755447253804",
-    appId: "1:755447253804:web:15b455c5eb975818f2fa89"
+    appId: "1:755447253804:web:ba29f01b5c8cafeaf2fa89"
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -96,7 +97,7 @@ export default function NewTraining({ navigation }) {
         return () => {
             unsubscribe();
         };
-    }, [trainingList]);
+    }, []);
 
     const finishAdding = () => {
         setVisible(false)

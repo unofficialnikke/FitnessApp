@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect, useReducer } from 'react';
+import { useEffect, useState } from 'react';
 import { View, LogBox, Alert } from "react-native";
 import { ListItem, Icon } from '@rneui/themed';
 import { styles } from '../styles/ShowTrainingsStyle';
