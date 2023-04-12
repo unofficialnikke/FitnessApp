@@ -100,6 +100,7 @@ export default function NewTraining({ navigation }) {
 
     const finishAdding = () => {
         setVisible(false)
+        setTrainingListId(1)
     }
 
     return (
