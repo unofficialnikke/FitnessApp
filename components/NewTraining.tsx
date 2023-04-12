@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, Alert } from 'react-native';
 import { Input, Button } from '@rneui/themed';
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect } from 'react';
 import { styles } from '../styles/NewTrainingStyle';
 import { getApp, getApps, initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, onSnapshot, updateDoc, arrayUnion, doc, query, deleteDoc } from 'firebase/firestore';
@@ -9,7 +9,6 @@ import { getFirestore, collection, addDoc, onSnapshot, updateDoc, arrayUnion, do
 const firebaseConfig = {
     apiKey: "AIzaSyA4WpVrSlTSM1bpy6faWilQHjKtQwsq51o",
     authDomain: "fitnessapp-7487c.firebaseapp.com",
-    databaseURL: "https://fitnessapp-7487c-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "fitnessapp-7487c",
     storageBucket: "fitnessapp-7487c.appspot.com",
     messagingSenderId: "755447253804",
