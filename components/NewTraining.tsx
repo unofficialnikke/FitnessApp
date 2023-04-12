@@ -7,13 +7,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, onSnapshot, updateDoc, arrayUnion, doc, query, deleteDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyANpiYh4Wlo0FwfuygNMqxRbC2KgjnOBEs",
-    authDomain: "fitnessapp-42977.firebaseapp.com",
-    databaseURL: "fitnessapp-42977-default-rtdb.europe-west1.firebasedatabase.app/",
-    projectId: "fitnessapp-42977",
-    storageBucket: "fitnessapp-42977.appspot.com",
-    messagingSenderId: "1063700009118",
-    appId: "1:1063700009118:web:cbf8f859e07df1b0b62b8f"
+    apiKey: "AIzaSyA4WpVrSlTSM1bpy6faWilQHjKtQwsq51o",
+    authDomain: "fitnessapp-7487c.firebaseapp.com",
+    projectId: "fitnessapp-7487c",
+    storageBucket: "fitnessapp-7487c.appspot.com",
+    messagingSenderId: "755447253804",
+    appId: "1:755447253804:web:15b455c5eb975818f2fa89"
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -99,6 +98,10 @@ export default function NewTraining({ navigation }) {
         };
     }, [trainingList]);
 
+    const finishAdding = () => {
+        setVisible(false)
+    }
+
     return (
         <View style={styles.container}>
             <Button
@@ -165,18 +168,32 @@ export default function NewTraining({ navigation }) {
                             setAmount(t)
                         }}
                     />
-                    <Button
-                        title="Lisää liike"
-                        size="lg"
-                        style={{ padding: 10 }}
-                        type="solid"
-                        color="orange"
-                        onPress={() => {
-                            addTraining()
-                        }}
-                    />
+                    <View style={{ flexDirection: "row" }}>
+                        <Button
+                            title="Lisää liike"
+                            size="lg"
+                            style={{ padding: 10 }}
+                            type="solid"
+                            color="orange"
+                            onPress={() => {
+                                addTraining()
+                            }}
+                        />
+                        <View style={{ marginLeft: 30, marginRight: 30 }}></View>
+                        <Button
+                            title="Valmis"
+                            style={{ padding: 10 }}
+                            size="lg"
+                            type="solid"
+                            color="orange"
+                            onPress={() => {
+                                finishAdding()
+                            }}
+                        />
+                    </View>
                 </View>
             )}
+
         </View >
     )
 }
