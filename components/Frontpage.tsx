@@ -1,4 +1,4 @@
-import { Button } from '@rneui/themed';
+import { Chip } from '@rneui/themed';
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { styles } from '../styles/FrontpageStyle';
@@ -12,15 +12,35 @@ export default function Frontpage({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.homeText}>{`Tänään: ${d.getDate()}. ${months[d.getMonth()]}ta ${d.getFullYear()}`}</Text>
-            <Button
+            <Chip
                 title="Lisää uusi harjoitus"
                 type="solid"
+                size="lg"
                 color="orange"
-                buttonStyle={styles.button}
+                icon={{
+                    name: "add",
+                    color: "white",
+                }}
                 onPress={() => {
                     navigation.navigate('NewTraining');
                 }}
             />
+            <View style={{ marginTop: 40 }}>
+                <Chip
+                    style={{ padding: 10 }}
+                    size="lg"
+                    type="solid"
+                    color="#414141"
+                    title="Harjoituksesi"
+                    icon={{
+                        name: "menu",
+                        color: "white",
+                    }}
+                    onPress={() => {
+                        navigation.navigate('ShowTrainings')
+                    }}
+                />
+            </View>
         </View>
     )
 }

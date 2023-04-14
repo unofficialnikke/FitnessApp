@@ -1,21 +1,10 @@
 import * as React from 'react';
 import { View, Text, Alert } from 'react-native';
-import { Input, Button } from '@rneui/themed';
-import { useState, useEffect } from 'react';
+import { Input, Chip } from '@rneui/themed';
+import { useState } from 'react';
 import { styles } from '../styles/NewTrainingStyle';
-import { getApp, getApps, initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc, onSnapshot, updateDoc, arrayUnion, doc, query, deleteDoc } from 'firebase/firestore';
-
-const firebaseConfig = {
-    apiKey: "AIzaSyA4WpVrSlTSM1bpy6faWilQHjKtQwsq51o",
-    authDomain: "fitnessapp-7487c.firebaseapp.com",
-    projectId: "fitnessapp-7487c",
-    storageBucket: "fitnessapp-7487c.appspot.com",
-    messagingSenderId: "755447253804",
-    appId: "1:755447253804:web:ba29f01b5c8cafeaf2fa89"
-};
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { collection, addDoc, updateDoc, arrayUnion, doc } from 'firebase/firestore';
+import { db } from '../firebaseConfig';
 
 export default function NewTraining({ navigation }) {
     const [trainingListName, setTrainingListName] = useState("")
@@ -23,7 +12,6 @@ export default function NewTraining({ navigation }) {
     const [weight, setWeight] = useState("")
     const [repetitions, setRepetitions] = useState("")
     const [amount, setAmount] = useState("")
-    const [trainingList, setTrainingList] = useState<any>([])
     const [trainingListId, setTrainingListId] = useState<number>(1)
     const [visible, setVisible] = useState(false)
 
@@ -31,20 +19,23 @@ export default function NewTraining({ navigation }) {
         if (trainingName === "" || trainingName.toLowerCase() === "tyhjä") {
             Alert.alert("Virhe", "Liikkeen nimi ei voi olla tyhjä")
             return
-        }
-        try {
-            const newTraining = {
-                trainingName: trainingName,
-                weight: weight,
-                repetitions: repetitions,
-                amount: amount
-            };
-            await updateDoc(doc(db, "trainingList", trainingListId.toString()), {
-                trainings: arrayUnion(newTraining)
-            });
-            console.log('Training added: ', newTraining);
-        } catch (error) {
-            console.error('Error adding training: ', error);
+        } else if (trainingListId === 1) {
+            Alert.alert("Virhe", "Lisää ensin harjoitukselle nimi")
+        } else {
+            try {
+                const newTraining = {
+                    trainingName: trainingName,
+                    weight: weight,
+                    repetitions: repetitions,
+                    amount: amount
+                };
+                await updateDoc(doc(db, "trainingList", trainingListId.toString()), {
+                    trainings: arrayUnion(newTraining)
+                });
+                console.log('Training added: ', newTraining);
+            } catch (error) {
+                console.error('Error adding training: ', error);
+            }
         }
         setTrainingName("")
         setWeight("")
@@ -65,38 +56,13 @@ export default function NewTraining({ navigation }) {
             {/* @ts-ignore */ }
             setTrainingListId(ref.id);
             console.log("Training list added with ID: ", ref.id);
+            Alert.alert("Onnistui!", "Harjoituslista lisätty onnistuneesti. Lisää seuraavaksi liikkeet harjoitukselle. Lopuksi paina Valmis");
         } catch (error) {
             console.error("Error adding training list: ", error);
         }
         setTrainingListName("")
         setVisible(true)
     };
-
-    const deleteTrainingList = async (trainingListId: any) => {
-        try {
-            if (!trainingListId) {
-                console.log('Error deleting training list: no ID provided')
-                return
-            }
-            const docRef = doc(db, 'trainingList', trainingListId)
-            await deleteDoc(docRef)
-            console.log('Training list deleted successfully!')
-
-        } catch (error) {
-            console.log('Error deleting training list: ', error)
-        }
-    }
-
-    useEffect(() => {
-        const q = query(collection(db, "trainingList"));
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const trainingListData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-            setTrainingList(trainingListData);
-        });
-        return () => {
-            unsubscribe();
-        };
-    }, []);
 
     const finishAdding = () => {
         setVisible(false)
@@ -105,14 +71,18 @@ export default function NewTraining({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Button
+            <Chip
                 style={{ padding: 10 }}
                 size="lg"
                 type="solid"
                 color="#414141"
-                title="Katso lisätyt harjoituksesi"
+                title="Harjoituksesi"
+                icon={{
+                    name: "menu",
+                    color: "white",
+                }}
                 onPress={() => {
-                    navigation.navigate('ShowTrainings', { trainingList, deleteTrainingList })
+                    navigation.navigate('ShowTrainings')
                 }}
             />
             <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 30 }}>Anna harjoitukselle nimi:</Text>
@@ -124,14 +94,18 @@ export default function NewTraining({ navigation }) {
                     setTrainingListName(t)
                 }}
             />
-            <Button
+            <Chip
                 title="Lisää harjoitus"
-                style={{ padding: 10 }}
+                style={{ padding: 10, flex: 1 }}
                 size="lg"
                 type="solid"
                 color="orange"
+                icon={{
+                    name: "add",
+                    color: "white",
+                }}
                 onPress={() => {
-                    addTrainingList()
+                    addTrainingList();
                 }}
             />
             {visible && (
@@ -170,23 +144,31 @@ export default function NewTraining({ navigation }) {
                         }}
                     />
                     <View style={{ flexDirection: "row" }}>
-                        <Button
+                        <Chip
                             title="Lisää liike"
                             size="lg"
                             style={{ padding: 10 }}
                             type="solid"
                             color="orange"
+                            icon={{
+                                name: "add",
+                                color: "white",
+                            }}
                             onPress={() => {
                                 addTraining()
                             }}
                         />
                         <View style={{ marginLeft: 30, marginRight: 30 }}></View>
-                        <Button
+                        <Chip
                             title="Valmis"
                             style={{ padding: 10 }}
                             size="lg"
                             type="solid"
                             color="orange"
+                            icon={{
+                                name: "done",
+                                color: "white",
+                            }}
                             onPress={() => {
                                 finishAdding()
                             }}
@@ -194,7 +176,6 @@ export default function NewTraining({ navigation }) {
                     </View>
                 </View>
             )}
-
         </View >
     )
 }

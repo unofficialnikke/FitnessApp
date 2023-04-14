@@ -1,26 +1,43 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { View, LogBox, Alert } from "react-native";
+import { useEffect, useState } from 'react';
+import { View, LogBox, Alert, ScrollView } from "react-native";
 import { ListItem, Icon } from '@rneui/themed';
 import { styles } from '../styles/ShowTrainingsStyle';
+import { db } from '../firebaseConfig';
+import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
 
-LogBox.ignoreLogs(['Non-serializable values were found in the navigation state',]);
-
-export default function ShowTrainings({ route, navigation }) {
-    const { trainingList, deleteTrainingList } = route.params
-    const [expanded, setExpanded] = useState(false)
+export default function ShowTrainings({ navigation }) {
     const [expandedId, setExpandedId] = useState(null)
-    const [updatedTrainingList, setUpdatedTrainingList] = useState(trainingList)
+    const [trainingList, setTrainingList] = useState<any>([])
 
-    const handleDelete = (id: any) => {
-        const newTrainingList = updatedTrainingList.filter((item) => item.id !== id);
-        setUpdatedTrainingList(newTrainingList);
-        deleteTrainingList(id);
-    };
+    const deleteTrainingList = async (trainingListId: any) => {
+        try {
+            if (!trainingListId) {
+                console.log('Error deleting training list: no ID provided')
+                return
+            }
+            const docRef = doc(db, 'trainingList', trainingListId)
+            await deleteDoc(docRef)
+            console.log('Training list deleted successfully!')
+        } catch (error) {
+            console.log('Error deleting training list: ', error)
+        }
+    }
+
+    useEffect(() => {
+        const q = query(collection(db, "trainingList"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const trainingListData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setTrainingList(trainingListData);
+        });
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
     return (
-        <View>
-            {updatedTrainingList.map((item: any) => (
+        <ScrollView>
+            {trainingList.map((item: any) => (
                 <ListItem.Accordion
                     key={item.id}
                     content={
@@ -37,7 +54,7 @@ export default function ShowTrainings({ route, navigation }) {
                                             { text: "Peruuta", style: "cancel" }, {
                                                 text: "Ok",
                                                 onPress: () =>
-                                                    handleDelete(item.id),
+                                                    deleteTrainingList(item.id),
                                                 style: "destructive",
                                             },
                                         ],
@@ -59,6 +76,7 @@ export default function ShowTrainings({ route, navigation }) {
                             setExpandedId(item.id);
                         }
                     }}>
+
                     {item.trainings.map((training: any, key: any) => (
                         <ListItem key={key}>
                             <ListItem.Content>
@@ -71,6 +89,6 @@ export default function ShowTrainings({ route, navigation }) {
                     ))}
                 </ListItem.Accordion>
             ))}
-        </View>
+        </ScrollView>
     );
 };

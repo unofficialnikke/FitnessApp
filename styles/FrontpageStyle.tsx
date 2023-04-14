@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     button: {
-        borderRadius: 10,
         marginHorizontal: 50,
         height: 40,
         width: 170,
