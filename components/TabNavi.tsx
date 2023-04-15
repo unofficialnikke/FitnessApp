@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Calendar from './Calendar';
+import TrainingCalendar from './TrainingCalendar';
 import Frontpage from './Frontpage';
 import Trainings from './Trainings';
 import { View } from 'react-native';
@@ -20,7 +20,7 @@ function HomeScreen() {
 function CalendarScreen() {
     return (
         <View style={styles.container}>
-            <Calendar />
+            <TrainingCalendar />
         </View>
     );
 }

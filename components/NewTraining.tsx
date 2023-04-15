@@ -4,7 +4,7 @@ import { Input, Chip } from '@rneui/themed';
 import { useState } from 'react';
 import { styles } from '../styles/NewTrainingStyle';
 import { collection, addDoc, updateDoc, arrayUnion, doc } from 'firebase/firestore';
-import { db } from '../firebaseConfig';
+import { db } from '../config/firebaseConfig';
 
 export default function NewTraining({ navigation }) {
     const [trainingListName, setTrainingListName] = useState("")

@@ -11,35 +11,38 @@ export default function Frontpage({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.homeText}>{`Tänään: ${d.getDate()}. ${months[d.getMonth()]}ta ${d.getFullYear()}`}</Text>
-            <Chip
-                title="Lisää uusi harjoitus"
-                type="solid"
-                size="lg"
-                color="orange"
-                icon={{
-                    name: "add",
-                    color: "white",
-                }}
-                onPress={() => {
-                    navigation.navigate('NewTraining');
-                }}
-            />
-            <View style={{ marginTop: 40 }}>
+            <View style={styles.dateContainer}>
+                <Text style={styles.homeText}>{`Tänään: ${d.getDate()}. ${months[d.getMonth()]}ta ${d.getFullYear()}`}</Text>
+            </View>
+            <View style={{ marginBottom: 250 }}>
                 <Chip
-                    style={{ padding: 10 }}
-                    size="lg"
+                    title="Lisää uusi harjoitus"
                     type="solid"
-                    color="#414141"
-                    title="Harjoituksesi"
+                    size="lg"
+                    color="orange"
                     icon={{
-                        name: "menu",
+                        name: "add",
                         color: "white",
                     }}
                     onPress={() => {
-                        navigation.navigate('ShowTrainings')
+                        navigation.navigate('NewTraining');
                     }}
                 />
+                <View style={{ marginTop: 40 }}>
+                    <Chip
+                        size="lg"
+                        type="solid"
+                        color="#414141"
+                        title="Harjoituksesi"
+                        icon={{
+                            name: "menu",
+                            color: "white",
+                        }}
+                        onPress={() => {
+                            navigation.navigate('ShowTrainings')
+                        }}
+                    />
+                </View>
             </View>
         </View>
     )

@@ -25,5 +25,10 @@ export const styles = StyleSheet.create({
         textAlign: "center",
         marginBottom: 4,
         marginTop: 4
+    },
+    dateContainer: {
+        flex: 1,
+        justifyContent: "space-between",
+        marginTop: 60
     }
 })
