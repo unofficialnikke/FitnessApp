@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image, Alert } from "react-native";
 import { styles } from "../styles/FrontpageStyle";
 import { useState } from "react";
 import { Chip, ListItem } from "@rneui/themed";
@@ -20,13 +20,18 @@ export default function Trainings() {
     };
 
     const getTrainings = async () => {
-        try {
-            const response = await fetch(`${config.API_URL}${muscle}`, requestOptions);
-            const data = await response.json();
-            setResults(data);
-        } catch (err) {
-            console.log('error', err);
+        if (muscle) {
+            try {
+                const response = await fetch(`${config.API_URL}${muscle}`, requestOptions);
+                const data = await response.json();
+                setResults(data);
+            } catch (err) {
+                console.log('error', err);
+            }
+        } else {
+            Alert.alert("Virhe", "Valitse ensin kehon osa valikosta")
         }
+
     };
     return (
         <ScrollView style={{ width: "100%" }}>
