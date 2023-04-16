@@ -30,5 +30,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-between",
         marginTop: 60
-    }
+    },
+    input: {
+        textAlign: "center",
+    },
 })
