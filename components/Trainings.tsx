@@ -1,16 +1,14 @@
-import { View, Text, FlatList, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import { styles } from "../styles/FrontpageStyle";
-import { useEffect, useState } from "react";
-import { Chip, Input, ListItem } from "@rneui/themed";
+import { useState } from "react";
+import { Chip, ListItem } from "@rneui/themed";
 import RNPickerSelect from 'react-native-picker-select';
 import React from "react";
 
-const Trainings = React.memo(() => {
+export default function Trainings() {
     const [muscle, setMuscle] = useState("")
     const [results, setResults] = useState<any>([])
     const [expandedId, setExpandedId] = useState(null)
-    const [page, setPage] = useState(1)
-
 
     const requestOptions: any = {
         method: "GET",
@@ -90,5 +88,4 @@ const Trainings = React.memo(() => {
             </View>
         </ScrollView>
     )
-})
-export default Trainings
+}
