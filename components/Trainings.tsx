@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Chip, ListItem } from "@rneui/themed";
 import RNPickerSelect from 'react-native-picker-select';
 import React from "react";
+import config from "../config/apiConfig"
 
 export default function Trainings() {
     const [muscle, setMuscle] = useState("")
@@ -13,14 +14,14 @@ export default function Trainings() {
     const requestOptions: any = {
         method: "GET",
         headers: {
-            'X-RapidAPI-Key': 'd7333264c3msh1dbb40b432c704ep132e6fjsn9e3526299d07',
-            'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
+            'X-RapidAPI-Key': config.API_KEY,
+            'X-RapidAPI-Host': config.API
         }
     };
 
     const getTrainings = async () => {
         try {
-            const response = await fetch(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${muscle}`, requestOptions);
+            const response = await fetch(`${config.API_URL}${muscle}`, requestOptions);
             const data = await response.json();
             setResults(data);
         } catch (err) {
