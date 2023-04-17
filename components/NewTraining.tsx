@@ -44,7 +44,7 @@ export default function NewTraining({ navigation }) {
     };
 
     const addTrainingList = async () => {
-        if (trainingListName === "" || trainingListName.toLowerCase() == "tyhjä") {
+        if (trainingListName === "" || trainingListName.toLowerCase() === "tyhjä") {
             Alert.alert("Virhe", "Harjoituksen nimi ei voi olla tyhjä")
             return
         }
@@ -78,22 +78,25 @@ export default function NewTraining({ navigation }) {
                 color="#414141"
                 title="Harjoituksesi"
                 icon={{
-                    name: "menu",
+                    name: "list-outline",
                     color: "white",
+                    type: "ionicon"
                 }}
                 onPress={() => {
-                    navigation.navigate('ShowTrainings')
+                    navigation.navigate("ShowTrainings")
                 }}
             />
             <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 30 }}>Anna harjoitukselle nimi:</Text>
-            <Input
-                style={styles.input}
-                placeholder="Harjoituksen nimi"
-                value={trainingListName}
-                onChangeText={t => {
-                    setTrainingListName(t)
-                }}
-            />
+            <View style={{ width: "75%" }}>
+                <Input
+                    style={styles.input}
+                    placeholder="Harjoituksen nimi"
+                    value={trainingListName}
+                    onChangeText={t => {
+                        setTrainingListName(t)
+                    }}
+                />
+            </View>
             <Chip
                 title="Lisää harjoitus"
                 style={{ padding: 10, flex: 1 }}
@@ -111,38 +114,40 @@ export default function NewTraining({ navigation }) {
             {visible && (
                 <View style={styles.innerContainer}>
                     <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 15 }}>Lisää liikkeet:</Text>
-                    <Input
-                        style={styles.input}
-                        placeholder="liikkeen nimi.."
-                        value={trainingName}
-                        onChangeText={(t) => {
-                            setTrainingName(t)
-                        }}
-                    /><Input
-                        style={styles.input}
-                        placeholder="painot (kg).."
-                        value={weight}
-                        keyboardType="numeric"
-                        onChangeText={(t) => {
-                            setWeight(t)
-                        }}
-                    /><Input
-                        style={styles.input}
-                        placeholder="sarjan pituus.."
-                        value={repetitions}
-                        keyboardType="numeric"
-                        onChangeText={(t) => {
-                            setRepetitions(t)
-                        }}
-                    /><Input
-                        style={styles.input}
-                        placeholder="sarjojen määrä.."
-                        value={amount}
-                        keyboardType="numeric"
-                        onChangeText={t => {
-                            setAmount(t)
-                        }}
-                    />
+                    <View style={{ width: "75%" }}>
+                        <Input
+                            style={styles.input}
+                            placeholder="liikkeen nimi.."
+                            value={trainingName}
+                            onChangeText={(t) => {
+                                setTrainingName(t)
+                            }}
+                        /><Input
+                            style={styles.input}
+                            placeholder="painot (kg).."
+                            value={weight}
+                            keyboardType="numeric"
+                            onChangeText={(t) => {
+                                setWeight(t)
+                            }}
+                        /><Input
+                            style={styles.input}
+                            placeholder="sarjan pituus.."
+                            value={repetitions}
+                            keyboardType="numeric"
+                            onChangeText={(t) => {
+                                setRepetitions(t)
+                            }}
+                        /><Input
+                            style={styles.input}
+                            placeholder="sarjojen määrä.."
+                            value={amount}
+                            keyboardType="numeric"
+                            onChangeText={t => {
+                                setAmount(t)
+                            }}
+                        />
+                    </View>
                     <View style={{ flexDirection: "row" }}>
                         <Chip
                             title="Lisää liike"

@@ -31,13 +31,13 @@ export default function Trainings() {
         } else {
             Alert.alert("Virhe", "Valitse ensin kehon osa valikosta")
         }
-
     };
     return (
         <ScrollView style={{ width: "100%" }}>
             <Text style={{ textAlign: "center", fontSize: 18, marginTop: 10 }}>Valitse kehon osa, jota haluat treenata:</Text>
             <RNPickerSelect
                 onValueChange={(value) => setMuscle(value)}
+                placeholder={{ label: "Kehon osat..", color: "grey" }}
                 items={[
                     { label: "Aerobinen", value: "cardio" },
                     { label: "Alaraajat", value: "lower legs" },
@@ -69,7 +69,7 @@ export default function Trainings() {
                         content={
                             <>
                                 <ListItem.Content>
-                                    <ListItem.Title style={{ fontSize: 22 }}>{item.name} </ListItem.Title>
+                                    <ListItem.Title style={{ fontSize: 22, color: "orange" }}>{item.name} </ListItem.Title>
                                     <ListItem.Subtitle style={{ fontSize: 18 }}>Bodypart: {item.bodyPart}</ListItem.Subtitle>
                                     <ListItem.Subtitle style={{ fontSize: 18 }}>Equipment: {item.equipment}</ListItem.Subtitle>
                                 </ListItem.Content>
