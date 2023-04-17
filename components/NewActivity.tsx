@@ -52,10 +52,12 @@ export default function NewActivity({ navigation }) {
                 training: [selectedTraining]
             })
             console.log("Activity added succesfully with ID: ", ref.id)
+            Alert.alert("Onnistui", "Uusi aktiviteetti lisätty!")
         } catch (error) {
             console.error("Error adding new activity", error)
         }
         setSelectedTraining(null)
+        setDate(new Date())
     }
 
     return (

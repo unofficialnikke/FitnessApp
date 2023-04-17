@@ -54,6 +54,7 @@ export default function ShowTrainings({ navigation }) {
                     {trainingList.map((item: any) => (
                         <ListItem.Accordion
                             key={item.id}
+                            bottomDivider
                             content={
                                 <>
                                     <Icon

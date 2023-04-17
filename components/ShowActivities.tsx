@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { ListItem } from '@rneui/themed';
 import { db } from '../config/firebaseConfig';
 import { collection, onSnapshot, query } from 'firebase/firestore';
+import { styles } from "../styles/NewActivityStyle";
 
 export default function ShowActivities({ navigation }) {
     const [activityList, setActivityList] = useState<any>([])
@@ -23,12 +24,12 @@ export default function ShowActivities({ navigation }) {
     const renderActivityList = () => {
         if (loading) {
             return (
-                <View>
+                <View style={styles.placement}>
                     <ActivityIndicator size="large" color="orange" />
                 </View>)
         } else if (activityList.length === 0) {
             return (
-                <View>
+                <View style={styles.placement}>
                     <Text style={{ fontSize: 24 }}>Ei lisättyjä aktiviteettejä</Text>
                 </View>
             )
@@ -49,7 +50,9 @@ export default function ShowActivities({ navigation }) {
                                         {trainingList.trainings.map((training: any, key: any) => (
                                             <ListItem key={key}>
                                                 <ListItem.Content>
-                                                    <ListItem.Title style={{ fontSize: 20 }}>{training.trainingName}</ListItem.Title>
+                                                    <ListItem.Title style={{ fontSize: 20 }}>
+                                                        {training.trainingName}
+                                                    </ListItem.Title>
                                                     <ListItem.Subtitle style={{ fontSize: 18 }}>
                                                         Painot: {training.weight}, Toistot: {training.repetitions}, Määrä: {training.amount}
                                                     </ListItem.Subtitle>

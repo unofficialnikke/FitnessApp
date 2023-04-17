@@ -66,6 +66,7 @@ export default function Trainings() {
                 {results.slice(0, 50).map((item: any, key: any) => (
                     <ListItem.Accordion
                         key={key}
+                        bottomDivider
                         content={
                             <>
                                 <ListItem.Content>

@@ -25,6 +25,11 @@ export const styles = StyleSheet.create({
     dateText: {
         marginBottom: 25,
         marginTop: 15
+    },
+    placement: {
+        alignItems: "center",
+        marginTop: 300,
+        fontSize: 24
     }
 
 })
