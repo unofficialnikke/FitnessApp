@@ -4,6 +4,7 @@ import { ListItem } from '@rneui/themed';
 import { db } from '../config/firebaseConfig';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { styles } from "../styles/NewActivityStyle";
+import { List } from "react-native-paper";
 
 export default function ShowActivities({ navigation }) {
     const [activityList, setActivityList] = useState<any>([])
@@ -37,32 +38,49 @@ export default function ShowActivities({ navigation }) {
             return (
                 <ScrollView>
                     {activityList.map((item: any) => (
-                        <ListItem key={item.id} bottomDivider>
-                            <ListItem.Content>
-                                {item.training.map((trainingList: any, key: any) => (
-                                    <View key={key} style={{ width: "100%" }}>
+                        <ListItem.Accordion
+                            key={item.id}
+                            bottomDivider
+                            content={
+                                <>
+                                    <ListItem.Content>
                                         <ListItem.Title style={{ fontSize: 26, color: "orange" }}>
-                                            {trainingList.name}
+                                            {item.title}
                                         </ListItem.Title>
                                         <ListItem.Title style={{ fontSize: 20, }}>
                                             {item.date}
                                         </ListItem.Title>
+                                    </ListItem.Content>
+                                </>
+                            }
+                            isExpanded={expandedId === item.id}
+                            onPress={() => {
+                                if (expandedId === item.id) {
+                                    setExpandedId(null);
+                                } else {
+                                    setExpandedId(item.id);
+                                }
+                            }}>
+                            {item.training.map((trainingList: any, key: any) => (
+                                <ListItem key={key}>
+                                    <ListItem.Content>
                                         {trainingList.trainings.map((training: any, key: any) => (
                                             <ListItem key={key}>
-                                                <ListItem.Content>
+                                                <View style={{ width: "100%" }}>
                                                     <ListItem.Title style={{ fontSize: 20 }}>
-                                                        {training.trainingName}
+                                                        {training.trainingName}:
                                                     </ListItem.Title>
                                                     <ListItem.Subtitle style={{ fontSize: 18 }}>
                                                         Painot: {training.weight}, Toistot: {training.repetitions}, Määrä: {training.amount}
                                                     </ListItem.Subtitle>
-                                                </ListItem.Content>
+                                                </View>
                                             </ListItem>
                                         ))}
-                                    </View>
-                                ))}
-                            </ListItem.Content>
-                        </ListItem>
+                                    </ListItem.Content>
+                                </ListItem>
+                            ))}
+                        </ListItem.Accordion>
+
                     ))}
                 </ScrollView>
             )

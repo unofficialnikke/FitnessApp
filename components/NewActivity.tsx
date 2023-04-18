@@ -49,6 +49,7 @@ export default function NewActivity({ navigation }) {
         try {
             const ref = await addDoc(collection(db, "activityList"), {
                 date: date.toLocaleDateString(),
+                title: selectedTraining.name,
                 training: [selectedTraining]
             })
             console.log("Activity added succesfully with ID: ", ref.id)
