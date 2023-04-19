@@ -68,7 +68,7 @@ export default function NewActivity({ navigation }) {
                     size="lg"
                     type="solid"
                     color="#414141"
-                    title="Katso aktiviteetit"
+                    title="Aktiviteettisi"
                     icon={{
                         name: "list-outline",
                         color: "white",
@@ -92,7 +92,7 @@ export default function NewActivity({ navigation }) {
                         color: "white",
                         type: "ionicon"
                     }}
-                    color="#414141"
+                    color="orange"
                 />
             </View>
             {show && (

@@ -55,7 +55,7 @@ export default function Trainings() {
                 <Chip
                     size="lg"
                     type="solid"
-                    color="orange"
+                    color="#414141"
                     title="Hae harjoitukset"
                     onPress={() => {
                         getTrainings()

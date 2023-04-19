@@ -14,7 +14,7 @@ export default function Frontpage({ navigation }) {
             <View style={styles.dateContainer}>
                 <Text style={styles.homeText}>{`Tänään: ${d.getDate()}. ${months[d.getMonth()]}ta ${d.getFullYear()}`}</Text>
             </View>
-            <View style={{ marginBottom: 40 }}>
+            <View style={{ marginBottom: 30 }}>
                 <Chip
                     title="Lisää kalenteriin"
                     type="solid"
@@ -30,9 +30,9 @@ export default function Frontpage({ navigation }) {
                     }}
                 />
             </View>
-            <View style={{ marginBottom: 250 }}>
+            <View style={{ flex: 0.5 }}>
                 <Chip
-                    title="Lisää uusi harjoitus"
+                    title="Uusi harjoitus"
                     type="solid"
                     size="lg"
                     color="orange"
@@ -44,22 +44,37 @@ export default function Frontpage({ navigation }) {
                         navigation.navigate("NewTraining")
                     }}
                 />
-                <View style={{ marginTop: 40 }}>
-                    <Chip
-                        size="lg"
-                        type="solid"
-                        color="#414141"
-                        title="Harjoituksesi"
-                        icon={{
-                            name: "list-outline",
-                            color: "white",
-                            type: "ionicon"
-                        }}
-                        onPress={() => {
-                            navigation.navigate("ShowTrainings")
-                        }}
-                    />
-                </View>
+            </View>
+            <View style={{ marginTop: 40, flexDirection: "row", flex: 0.4 }}>
+                <Chip
+                    size="lg"
+                    type="solid"
+                    color="#414141"
+                    title="Harjoituksesi"
+                    icon={{
+                        name: "list-outline",
+                        color: "white",
+                        type: "ionicon"
+                    }}
+                    onPress={() => {
+                        navigation.navigate("ShowTrainings")
+                    }}
+                />
+                <View style={{ marginLeft: 15, marginRight: 15 }}></View>
+                <Chip
+                    size="lg"
+                    type="solid"
+                    color="#414141"
+                    title="Aktiviteettisi"
+                    icon={{
+                        name: "list-outline",
+                        color: "white",
+                        type: "ionicon"
+                    }}
+                    onPress={() => {
+                        navigation.navigate("ShowActivities")
+                    }}
+                />
             </View>
         </View>
     )

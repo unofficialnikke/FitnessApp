@@ -14,14 +14,14 @@ export default function ShowTrainings({ navigation }) {
     const deleteTrainingList = async (trainingListId: any) => {
         try {
             if (!trainingListId) {
-                console.log('Error deleting training list: no ID provided')
+                console.log("Error deleting training list: no ID provided")
                 return
             }
-            const docRef = doc(db, 'trainingList', trainingListId)
+            const docRef = doc(db, "trainingList", trainingListId)
             await deleteDoc(docRef)
-            console.log('Training list deleted successfully!')
+            console.log("Training list deleted successfully!")
         } catch (error) {
-            console.log('Error deleting training list: ', error)
+            console.log("Error deleting training list: ", error)
         }
     }
     useEffect(() => {

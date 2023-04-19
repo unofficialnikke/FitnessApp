@@ -53,15 +53,28 @@ export default function TabNavi() {
 
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
-                tabBarActiveTintColor: 'orange',
-                tabBarInactiveTintColor: 'white',
-                tabBarInactiveBackgroundColor: '#414141',
-                tabBarActiveBackgroundColor: '#414141',
+                tabBarActiveTintColor: "orange",
+                tabBarInactiveTintColor: "white",
+                tabBarInactiveBackgroundColor: "#414141",
+                tabBarActiveBackgroundColor: "#414141",
+                headerTitleAlign: "center"
             })}
         >
-            <Tab.Screen name="Etusivu" component={HomeScreen} />
-            <Tab.Screen name="Kalenteri" component={CalendarScreen} />
-            <Tab.Screen name="Harjoitukset" component={TrainingsScreen} />
+            <Tab.Screen name="Etusivu" component={HomeScreen} options={{
+                headerStyle: { backgroundColor: "orange" },
+                headerTitleStyle: { color: "white" },
+            }}
+            />
+            <Tab.Screen name="Kalenteri" component={CalendarScreen} options={{
+                headerStyle: { backgroundColor: "orange" },
+                headerTitleStyle: { color: "white" }
+            }}
+            />
+            <Tab.Screen name="Harjoitukset" component={TrainingsScreen} options={{
+                headerStyle: { backgroundColor: "orange" },
+                headerTitleStyle: { color: "white" }
+            }}
+            />
         </Tab.Navigator>
     )
 }

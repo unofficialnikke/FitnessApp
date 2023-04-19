@@ -15,10 +15,10 @@ export default function StackNavi() {
             <Stack.Navigator>
                 <Stack.Screen name="TabNavi" component={TabNavi} options={{ headerShown: false }} />
                 <Stack.Screen name="Frontpage" component={Frontpage} />
-                <Stack.Screen name="NewTraining" component={NewTraining} options={{ title: "Uusi harjoitus" }} />
-                <Stack.Screen name="ShowTrainings" component={ShowTrainings} options={{ title: "Harjoitukset" }} />
-                <Stack.Screen name="NewActivity" component={NewActivity} options={{ title: "Uusi aktiviteetti" }} />
-                <Stack.Screen name="ShowActivities" component={ShowActivities} options={{ title: "Aktiviteetit" }} />
+                <Stack.Screen name="NewTraining" component={NewTraining} options={{ title: "Uusi harjoitus", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
+                <Stack.Screen name="ShowTrainings" component={ShowTrainings} options={{ title: "Harjoitukset", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
+                <Stack.Screen name="NewActivity" component={NewActivity} options={{ title: "Uusi aktiviteetti", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
+                <Stack.Screen name="ShowActivities" component={ShowActivities} options={{ title: "Aktiviteetit", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

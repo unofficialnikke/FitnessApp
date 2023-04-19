@@ -1,10 +1,9 @@
-import { View, ActivityIndicator, Text, ScrollView, FlatList } from "react-native";
+import { View, ActivityIndicator, Text, ScrollView, FlatList, Alert } from "react-native";
 import { useEffect, useState } from "react"
-import { ListItem } from '@rneui/themed';
+import { Icon, ListItem } from '@rneui/themed';
 import { db } from '../config/firebaseConfig';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, query, deleteDoc, doc } from 'firebase/firestore';
 import { styles } from "../styles/NewActivityStyle";
-import { List } from "react-native-paper";
 
 export default function ShowActivities({ navigation }) {
     const [activityList, setActivityList] = useState<any>([])
@@ -22,6 +21,20 @@ export default function ShowActivities({ navigation }) {
             unsubscribe()
         }
     }, [])
+    const deleteActivity = async (activityListId: any) => {
+        try {
+            if (!activityListId) {
+                console.log("Error deleting activity: no ID provided")
+                return
+            }
+            const docRef = doc(db, "activityList", activityListId)
+            await deleteDoc(docRef)
+            console.log("Activity deleted succesfully!")
+        } catch (error) {
+            console.log("Error deleting activity: ", error)
+        }
+    }
+
     const renderActivityList = () => {
         if (loading) {
             return (
@@ -43,8 +56,28 @@ export default function ShowActivities({ navigation }) {
                             bottomDivider
                             content={
                                 <>
+                                    <Icon
+                                        name="delete"
+                                        color="orange"
+                                        size={40}
+                                        onPress={() => {
+                                            Alert.alert(
+                                                "Varoitus",
+                                                `Haluatko varmasti poistaa harjoituksen ${item.title} päivältä ${item.date}?`,
+                                                [
+                                                    { text: "Peruuta", style: "cancel" }, {
+                                                        text: "Ok",
+                                                        onPress: () =>
+                                                            deleteActivity(item.id),
+                                                        style: "destructive",
+                                                    },
+                                                ],
+                                                { cancelable: true }
+                                            )
+                                        }}
+                                    />
                                     <ListItem.Content>
-                                        <ListItem.Title style={{ fontSize: 26, color: "orange" }}>
+                                        <ListItem.Title style={{ fontSize: 26, color: "#414141" }}>
                                             {item.title}
                                         </ListItem.Title>
                                         <ListItem.Title style={{ fontSize: 20, }}>
