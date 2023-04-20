@@ -1,13 +1,22 @@
 import { Chip } from '@rneui/themed';
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { styles } from '../styles/FrontpageStyle';
+import { signOut } from 'firebase/auth';
+import { auth } from '../config/firebaseConfig';
 
 export default function Frontpage({ navigation }) {
     const months = ["tammikuu", "helmikuu", "maaliskuu", "huhtikuu", "toukokuu", "kesäkuu",
         "heinäkuu", "elokuu", "syyskuu", "lokakuu", "marraskuu", "joulukuu"
     ];
     let d = new Date()
+
+    const signOutUser = async () => {
+        await signOut(auth)
+        console.log("Succesfully signed out")
+        navigation.navigate("LoginPage")
+        Alert.alert("Kirjautunut ulos", "Olet kirjautunut ulos")
+    }
 
     return (
         <View style={styles.container}>
@@ -73,6 +82,17 @@ export default function Frontpage({ navigation }) {
                     }}
                     onPress={() => {
                         navigation.navigate("ShowActivities")
+                    }}
+                />
+            </View>
+            <View>
+                <Chip
+                    title="Kirjaudu ulos"
+                    size="lg"
+                    type="solid"
+                    color="#414141"
+                    onPress={() => {
+                        signOutUser()
                     }}
                 />
             </View>

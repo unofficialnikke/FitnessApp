@@ -1,8 +1,8 @@
 import { View, ActivityIndicator, Text, ScrollView, FlatList, Alert } from "react-native";
 import { useEffect, useState } from "react"
 import { Icon, ListItem } from '@rneui/themed';
-import { db } from '../config/firebaseConfig';
-import { collection, onSnapshot, query, deleteDoc, doc } from 'firebase/firestore';
+import { db, auth } from '../config/firebaseConfig';
+import { collection, onSnapshot, query, deleteDoc, doc, where } from 'firebase/firestore';
 import { styles } from "../styles/NewActivityStyle";
 
 export default function ShowActivities({ navigation }) {
@@ -11,7 +11,7 @@ export default function ShowActivities({ navigation }) {
     const [expandedId, setExpandedId] = useState(null)
 
     useEffect(() => {
-        const q = query(collection(db, "activityList"))
+        const q = query(collection(db, "activityList"), where("userId", "==", auth.currentUser?.uid));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const activityListData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
             setActivityList(activityListData)

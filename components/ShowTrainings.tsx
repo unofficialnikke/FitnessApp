@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Alert, ScrollView, Text, View, ActivityIndicator } from "react-native";
 import { ListItem, Icon } from '@rneui/themed';
-import { db } from '../config/firebaseConfig';
-import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
+import { db, auth } from '../config/firebaseConfig';
+import { collection, deleteDoc, doc, onSnapshot, query, where } from 'firebase/firestore';
 import { styles } from '../styles/ShowTrainingsStyle';
 
 export default function ShowTrainings({ navigation }) {
@@ -25,7 +25,7 @@ export default function ShowTrainings({ navigation }) {
         }
     }
     useEffect(() => {
-        const q = query(collection(db, "trainingList"));
+        const q = query(collection(db, "trainingList"), where("userId", "==", auth.currentUser?.uid));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const trainingListData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
             setTrainingList(trainingListData);

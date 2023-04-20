@@ -3,8 +3,8 @@ import { View, Text, Platform, Alert } from "react-native";
 import { useEffect, useState } from "react"
 import { Input, Chip, ListItem, Icon } from '@rneui/themed';
 import { styles } from "../styles/NewActivityStyle";
-import { db } from '../config/firebaseConfig';
-import { addDoc, collection, doc, onSnapshot, query } from 'firebase/firestore';
+import { db, auth } from '../config/firebaseConfig';
+import { addDoc, collection, doc, onSnapshot, query, where } from 'firebase/firestore';
 import RNPickerSelect from 'react-native-picker-select';
 import DatePicker from '@react-native-community/datetimepicker';
 
@@ -17,7 +17,7 @@ export default function NewActivity({ navigation }) {
     const [selectedTraining, setSelectedTraining] = useState<any>(null)
 
     useEffect(() => {
-        const q = query(collection(db, "trainingList"));
+        const q = query(collection(db, "trainingList"), where("userId", "==", auth.currentUser?.uid));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const trainingListData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
             setTrainingList(trainingListData);
@@ -50,6 +50,7 @@ export default function NewActivity({ navigation }) {
             const ref = await addDoc(collection(db, "activityList"), {
                 date: date.toLocaleDateString(),
                 title: selectedTraining.name,
+                userId: auth.currentUser?.uid,
                 training: [selectedTraining]
             })
             console.log("Activity added succesfully with ID: ", ref.id)
