@@ -19,8 +19,8 @@ export default function StackNavi() {
                 <Stack.Screen name="Frontpage" component={Frontpage} />
                 <Stack.Screen name="NewTraining" component={NewTraining} options={{ title: "Uusi harjoitus", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
                 <Stack.Screen name="ShowTrainings" component={ShowTrainings} options={{ title: "Harjoitukset", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
-                <Stack.Screen name="NewActivity" component={NewActivity} options={{ title: "Uusi aktiviteetti", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
-                <Stack.Screen name="ShowActivities" component={ShowActivities} options={{ title: "Aktiviteetit", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
+                <Stack.Screen name="NewActivity" component={NewActivity} options={{ title: "Harjoitus kalenteriin", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
+                <Stack.Screen name="ShowActivities" component={ShowActivities} options={{ title: "Kalenterin harjoitukset", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" } }} />
                 <Stack.Screen name="LoginPage" component={LoginPage} options={{ title: "Kirjautuminen", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" }, headerTitleAlign: "center" }} />
                 <Stack.Screen name="RegistrationPage" component={RegistrationPage} options={{ title: "Rekisteröityminen", headerStyle: { backgroundColor: "orange" }, headerTitleStyle: { color: "white" }, headerTitleAlign: "center" }} />
             </Stack.Navigator>

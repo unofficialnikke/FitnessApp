@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
     },
     button: {
         marginHorizontal: 50,
@@ -15,7 +15,15 @@ export const styles = StyleSheet.create({
     homeText: {
         marginBottom: 20,
         textAlign: "center",
-        fontSize: 22,
+        fontSize: 24,
+        color: "#414141",
+        fontWeight: "600"
+    },
+    bottomText: {
+        marginBottom: 20,
+        textAlign: "center",
+        fontSize: 24,
+        fontWeight: "400"
     },
     headerText: {
         fontSize: 22,
@@ -29,9 +37,19 @@ export const styles = StyleSheet.create({
     dateContainer: {
         flex: 1,
         justifyContent: "space-between",
-        marginTop: 60
+        marginTop: 30
     },
     input: {
         textAlign: "center",
     },
+    chipView: {
+        marginBottom: 40,
+        marginTop: 15,
+        flex: 0.8,
+    },
+    placement: {
+        alignItems: "center",
+        marginTop: 450,
+        fontSize: 24
+    }
 })

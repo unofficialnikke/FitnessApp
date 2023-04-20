@@ -54,7 +54,7 @@ export default function NewActivity({ navigation }) {
                 training: [selectedTraining]
             })
             console.log("Activity added succesfully with ID: ", ref.id)
-            Alert.alert("Onnistui", "Uusi aktiviteetti lisätty!")
+            Alert.alert("Onnistui", "Harjoitus lisätty kalenteriin!")
         } catch (error) {
             console.error("Error adding new activity", error)
         }
@@ -69,7 +69,7 @@ export default function NewActivity({ navigation }) {
                     size="lg"
                     type="solid"
                     color="#414141"
-                    title="Aktiviteettisi"
+                    title="Kalenteriin lisätyt harjoitukset"
                     icon={{
                         name: "list-outline",
                         color: "white",
@@ -115,7 +115,7 @@ export default function NewActivity({ navigation }) {
                             setSelectedTraining(selected);
                         }
                     }}
-                    placeholder={{ label: "Valitse aktiviteetti", color: "grey" }}
+                    placeholder={{ label: "Valitse harjoitus", color: "grey" }}
                     items=
                     {trainingList.map((item: any, key: any) => (
                         { label: item.name, value: item.name, key: key }
@@ -125,7 +125,7 @@ export default function NewActivity({ navigation }) {
             </View>
             <View>
                 <Chip
-                    title="Lisää aktiviteetti"
+                    title="Lisää harjoitus kalenteriin"
                     size="lg"
                     type="solid"
                     color="orange"

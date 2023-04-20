@@ -1,4 +1,4 @@
-import { View, ActivityIndicator, Text, ScrollView, FlatList, Alert } from "react-native";
+import { View, ActivityIndicator, Text, ScrollView, Alert } from "react-native";
 import { useEffect, useState } from "react"
 import { Icon, ListItem } from '@rneui/themed';
 import { db, auth } from '../config/firebaseConfig';

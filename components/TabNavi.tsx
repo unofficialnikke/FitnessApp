@@ -3,6 +3,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import TrainingCalendar from './TrainingCalendar';
 import Frontpage from './Frontpage';
 import Trainings from './Trainings';
+import UserPage from './UserPage';
 import { View } from 'react-native';
 import { styles } from '../styles/FrontpageStyle';
 import { useNavigation } from '@react-navigation/native';
@@ -33,6 +34,14 @@ function TrainingsScreen() {
     );
 }
 
+function UserScreen() {
+    return (
+        <View style={styles.container}>
+            <UserPage navigation={useNavigation} />
+        </View >
+    );
+}
+
 const Tab = createBottomTabNavigator();
 
 export default function TabNavi() {
@@ -47,8 +56,10 @@ export default function TabNavi() {
                         iconName = focused ? 'home' : 'home-outline';
                     } else if (route.name === 'Kalenteri') {
                         iconName = focused ? 'calendar' : 'calendar-outline';
-                    } else {
+                    } else if (route.name === "Etsi liikkeitä") {
                         iconName = focused ? 'barbell' : 'barbell-outline';
+                    } else {
+                        iconName = focused ? 'person-circle' : 'person-circle-outline';
                     }
 
                     return <Ionicons name={iconName} size={size} color={color} />;
@@ -70,7 +81,12 @@ export default function TabNavi() {
                 headerTitleStyle: { color: "white" }
             }}
             />
-            <Tab.Screen name="Harjoitukset" component={TrainingsScreen} options={{
+            <Tab.Screen name="Etsi liikkeitä" component={TrainingsScreen} options={{
+                headerStyle: { backgroundColor: "orange" },
+                headerTitleStyle: { color: "white" }
+            }}
+            />
+            <Tab.Screen name="Käyttäjä" component={UserPage} options={{
                 headerStyle: { backgroundColor: "orange" },
                 headerTitleStyle: { color: "white" }
             }}
