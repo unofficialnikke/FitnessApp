@@ -10,6 +10,16 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 300,
         fontSize: 24
+    },
+    innerContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 10,
+        width: "75%"
+    },
+    scrollView: {
+        flex: 1,
+        justifyContent: "center"
     }
 
 })

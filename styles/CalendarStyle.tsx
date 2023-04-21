@@ -12,5 +12,10 @@ export const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
+    },
+    placement: {
+        alignItems: "center",
+        marginTop: 125,
+        fontSize: 24
     }
 })

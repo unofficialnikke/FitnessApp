@@ -1,6 +1,6 @@
-import { Button, Chip } from '@rneui/themed';
+import { Chip } from '@rneui/themed';
 import * as React from 'react';
-import { View, Text, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { styles } from '../styles/FrontpageStyle';
 import { db, auth } from '../config/firebaseConfig';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';

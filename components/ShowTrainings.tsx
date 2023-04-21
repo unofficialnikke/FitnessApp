@@ -10,6 +10,7 @@ export default function ShowTrainings({ navigation }) {
     const [expandedId, setExpandedId] = useState(null)
     const [trainingList, setTrainingList] = useState<any>([])
     const [loading, setLoading] = useState(true)
+    const [selectedTrainingListId, setSelectedTrainingListId] = useState(null)
 
     const deleteTrainingList = async (trainingListId: any) => {
         try {
@@ -24,6 +25,12 @@ export default function ShowTrainings({ navigation }) {
             console.log("Error deleting training list: ", error)
         }
     }
+    const editTrainingList = async (trainingListId: any) => {
+        setSelectedTrainingListId(trainingListId)
+
+        navigation.navigate("EditTrainingList", trainingListId)
+    }
+
     useEffect(() => {
         const q = query(collection(db, "trainingList"), where("userId", "==", auth.currentUser?.uid));
         const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -59,7 +66,7 @@ export default function ShowTrainings({ navigation }) {
                                 <>
                                     <Icon
                                         name="delete"
-                                        color="orange"
+                                        color="#de2a2a"
                                         size={40}
                                         onPress={() => {
                                             Alert.alert(
@@ -75,6 +82,14 @@ export default function ShowTrainings({ navigation }) {
                                                 ],
                                                 { cancelable: true }
                                             )
+                                        }} />
+                                    <Icon
+                                        type="ionicon"
+                                        name="create"
+                                        color="green"
+                                        size={40}
+                                        onPress={() => {
+                                            editTrainingList(item.id)
                                         }} />
                                     <ListItem.Content>
                                         <ListItem.Title style={{ fontSize: 24 }}>

@@ -58,7 +58,7 @@ export default function ShowActivities({ navigation }) {
                                 <>
                                     <Icon
                                         name="delete"
-                                        color="orange"
+                                        color="#de2a2a"
                                         size={40}
                                         onPress={() => {
                                             Alert.alert(

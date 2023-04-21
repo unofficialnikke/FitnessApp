@@ -44,12 +44,12 @@ export default function TrainingCalendar() {
     const renderActivityList = () => {
         if (loading) {
             return (
-                <View >
+                <View style={styles.placement}>
                     <ActivityIndicator size="large" color="orange" />
                 </View>)
         } else if (activityList.length === 0) {
             return (
-                <View >
+                <View style={styles.placement}>
                     <Text style={{ fontSize: 24 }}>Ei lisättyjä aktiviteettejä</Text>
                 </View>
             )
@@ -64,7 +64,7 @@ export default function TrainingCalendar() {
                                 <>
                                     <Icon
                                         name="delete"
-                                        color="orange"
+                                        color="#de2a2a"
                                         size={40}
                                         onPress={() => {
                                             Alert.alert(
