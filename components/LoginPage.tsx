@@ -39,7 +39,12 @@ export default function LoginPage({ navigation }) {
     }
 
     const openReset = () => {
-        setVisible(true)
+        if (!visible) {
+            setVisible(true)
+        } else {
+            setVisible(false)
+        }
+
     }
 
     return (
