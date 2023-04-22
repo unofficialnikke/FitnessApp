@@ -13,7 +13,7 @@ export default function TrainingCalendar() {
     const [loading, setLoading] = useState(true)
     const [expandedId, setExpandedId] = useState(null)
 
-    LocaleConfig.defaultLocale = 'fi';
+    LocaleConfig.defaultLocale = "fi";
 
     useEffect(() => {
         const q = query(collection(db, "activityList"), where("userId", "==", auth.currentUser?.uid));

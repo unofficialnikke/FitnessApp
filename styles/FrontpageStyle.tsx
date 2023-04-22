@@ -45,11 +45,25 @@ export const styles = StyleSheet.create({
     chipView: {
         marginBottom: 40,
         marginTop: 15,
-        flex: 0.8,
+        flex: 0.75,
     },
     placement: {
         alignItems: "center",
         marginTop: 450,
         fontSize: 24
+    },
+    trainingText: {
+        fontSize: 20,
+        textAlign: "center",
+        marginBottom: 5
+    },
+    trainingItem: {
+        fontSize: 20,
+        textAlign: "center",
+        fontWeight: "300"
+    },
+    todaysActivity: {
+        marginBottom: 205,
+        alignItems: "center"
     }
 })

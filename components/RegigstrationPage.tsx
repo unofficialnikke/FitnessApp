@@ -10,21 +10,17 @@ export default function RegistrationPage({ navigation }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfrim] = useState("")
-    const [error, setError] = useState("")
 
     const handleCreateUser = async () => {
         if (password !== passwordConfirm) {
-            setError("Salasanat eivät täsmää")
             Alert.alert("Virhe", "Salasanat eivät täsmää")
             return
         }
         else if (password.length < 7) {
-            setError("Salasana on liian lyhyt")
             Alert.alert("Virhe", "Salasana on liian lyhyt")
             return
         }
         else if (!isValidEmail(email)) {
-            setError("Sähköposti ei kelpaa")
             Alert.alert("Virhe", "Sähköposti ei kelpaa")
             return
         }
@@ -48,15 +44,18 @@ export default function RegistrationPage({ navigation }) {
                 <Input
                     style={styles.input}
                     placeholder="sähköposti.."
+                    keyboardType="email-address"
+                    autoCapitalize="none"
                     value={email}
                     onChangeText={(t) => {
                         setEmail(t)
                     }}
                 />
-                <Text style={{ textAlign: "center", marginBottom: 15, fontSize: 16, width: "80%" }}>Salasanan on oltava vähintään seitsemän merkkiä pitkä</Text>
+                <Text style={styles.passwordText}>Salasanan on oltava vähintään seitsemän merkkiä pitkä</Text>
                 <Input
                     style={styles.input}
                     placeholder="salasana.."
+                    autoCapitalize="none"
                     value={password}
                     onChangeText={(t) => {
                         setPassword(t)
@@ -66,6 +65,7 @@ export default function RegistrationPage({ navigation }) {
                 <Input
                     style={styles.input}
                     placeholder="salasana uudelleen.."
+                    autoCapitalize="none"
                     value={passwordConfirm}
                     onChangeText={(t) => {
                         setPasswordConfrim(t)

@@ -73,7 +73,6 @@ export default function NewTraining({ navigation }) {
     return (
         <View style={styles.container}>
             <Chip
-                style={{ padding: 10 }}
                 size="lg"
                 type="solid"
                 color="#414141"
@@ -87,7 +86,7 @@ export default function NewTraining({ navigation }) {
                     navigation.navigate("ShowTrainings")
                 }}
             />
-            <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 30 }}>Anna harjoitukselle nimi:</Text>
+            <Text style={styles.newTrainingText}>Anna harjoitukselle nimi:</Text>
             <View style={{ width: "75%" }}>
                 <Input
                     style={styles.input}
@@ -100,7 +99,6 @@ export default function NewTraining({ navigation }) {
             </View>
             <Chip
                 title="Lisää harjoitus"
-                style={{ padding: 10, flex: 1 }}
                 size="lg"
                 type="solid"
                 color="orange"
@@ -114,7 +112,7 @@ export default function NewTraining({ navigation }) {
             />
             {visible && (
                 <View style={styles.innerContainer}>
-                    <Text style={{ fontSize: 20, marginBottom: 12, marginTop: 15 }}>Lisää liikkeet:</Text>
+                    <Text style={styles.moves}>Lisää liikkeet:</Text>
                     <View style={{ width: "75%" }}>
                         <Input
                             style={styles.input}
@@ -153,7 +151,6 @@ export default function NewTraining({ navigation }) {
                         <Chip
                             title="Lisää liike"
                             size="lg"
-                            style={{ padding: 10 }}
                             type="solid"
                             color="orange"
                             icon={{
@@ -164,10 +161,9 @@ export default function NewTraining({ navigation }) {
                                 addTraining()
                             }}
                         />
-                        <View style={{ marginLeft: 30, marginRight: 30 }}></View>
+                        <View style={styles.spacer}></View>
                         <Chip
                             title="Valmis"
-                            style={{ padding: 10 }}
                             size="lg"
                             type="solid"
                             color="orange"
@@ -176,7 +172,19 @@ export default function NewTraining({ navigation }) {
                                 color: "white",
                             }}
                             onPress={() => {
-                                finishAdding()
+                                Alert.alert(
+                                    "Varoitus",
+                                    "Oletko lisännyt kaikki liikkeet harjoitukselle?",
+                                    [
+                                        { text: "En", style: "cancel" }, {
+                                            text: "Kyllä",
+                                            onPress: () =>
+                                                finishAdding(),
+                                            style: "destructive",
+                                        },
+                                    ],
+                                    { cancelable: true }
+                                )
                             }}
                         />
                     </View>

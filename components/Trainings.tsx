@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, Alert } from "react-native";
-import { styles } from "../styles/FrontpageStyle";
+import { styles } from "../styles/TrainingsStyle";
 import { useState } from "react";
 import { Chip, ListItem } from "@rneui/themed";
 import RNPickerSelect from 'react-native-picker-select';
@@ -14,8 +14,8 @@ export default function Trainings() {
     const requestOptions: any = {
         method: "GET",
         headers: {
-            'X-RapidAPI-Key': config.API_KEY,
-            'X-RapidAPI-Host': config.API
+            "X-RapidAPI-Key": config.API_KEY,
+            "X-RapidAPI-Host": config.API
         }
     };
 
@@ -26,7 +26,7 @@ export default function Trainings() {
                 const data = await response.json();
                 setResults(data);
             } catch (err) {
-                console.log('error', err);
+                console.log("Error getting trainings ", err);
             }
         } else {
             Alert.alert("Virhe", "Valitse ensin kehon osa valikosta")
@@ -34,7 +34,7 @@ export default function Trainings() {
     };
     return (
         <ScrollView style={{ width: "100%" }}>
-            <Text style={{ textAlign: "center", fontSize: 18, marginTop: 10 }}>Valitse kehon osa, jota haluat treenata:</Text>
+            <Text style={styles.chooseTrainingText}>Valitse kehon osa, jota haluat treenata:</Text>
             <RNPickerSelect
                 onValueChange={(value) => setMuscle(value)}
                 placeholder={{ label: "Kehon osat..", color: "grey" }}
@@ -70,9 +70,9 @@ export default function Trainings() {
                         content={
                             <>
                                 <ListItem.Content>
-                                    <ListItem.Title style={{ fontSize: 22, color: "orange" }}>{item.name} </ListItem.Title>
-                                    <ListItem.Subtitle style={{ fontSize: 18 }}>Bodypart: {item.bodyPart}</ListItem.Subtitle>
-                                    <ListItem.Subtitle style={{ fontSize: 18 }}>Equipment: {item.equipment}</ListItem.Subtitle>
+                                    <ListItem.Title style={styles.itemName}>{item.name} </ListItem.Title>
+                                    <ListItem.Subtitle style={styles.subtitle}>Bodypart: {item.bodyPart}</ListItem.Subtitle>
+                                    <ListItem.Subtitle style={styles.subtitle}>Equipment: {item.equipment}</ListItem.Subtitle>
                                 </ListItem.Content>
                             </>
                         }
@@ -83,9 +83,9 @@ export default function Trainings() {
                     >
                         <ListItem>
                             <ListItem.Content>
-                                <ListItem.Subtitle style={{ fontSize: 16 }}>
-                                    <View style={{ flexDirection: 'row' }}>
-                                        <Image source={{ uri: item.gifUrl }} style={{ height: 200, width: 200 }} />
+                                <ListItem.Subtitle style={styles.subtitle2}>
+                                    <View>
+                                        <Image source={{ uri: item.gifUrl }} style={styles.gif} />
                                     </View>
                                 </ListItem.Subtitle>
                             </ListItem.Content>

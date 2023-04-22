@@ -1,7 +1,7 @@
 import { Chip, Input, Text } from '@rneui/themed';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { View, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Alert } from 'react-native';
 import { auth } from '../config/firebaseConfig';
 import { styles } from '../styles/LoginStyle';
 
@@ -29,6 +29,8 @@ export default function LoginPage({ navigation }) {
                 <Input
                     style={styles.input}
                     placeholder="Sähköposti"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
                     value={email}
                     onChangeText={(t) => {
                         setEmail(t)
@@ -37,6 +39,7 @@ export default function LoginPage({ navigation }) {
                 <Input
                     style={styles.input}
                     placeholder="Salasana"
+                    autoCapitalize="none"
                     value={password}
                     onChangeText={(t) => {
                         setPassword(t)

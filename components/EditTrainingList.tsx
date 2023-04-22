@@ -27,20 +27,20 @@ export default function EditTrainingList({ route, navigation }) {
 
     const updateTrainingList = async () => {
         try {
-            const docRef = doc(db, 'trainingList', trainingListId);
+            const docRef = doc(db, "trainingList", trainingListId);
             const updatedTrainings = trainings.trainings.map(training => {
                 const { userId, ...rest } = training;
                 return rest;
             });
             await updateDoc(docRef, { trainings: updatedTrainings });
-            console.log('Document updated successfully!');
+            console.log("Document updated successfully");
             navigation.goBack()
         } catch (error) {
-            console.error('Error updating document: ', error);
+            console.error("Error updating document: ", error);
         }
     };
 
-    const handleInputChange = (key: any, property: any, value: any) => {
+    const trainingChange = (key: any, property: any, value: any) => {
         const updatedTrainings = [...trainings.trainings];
         updatedTrainings[key][property] = value;
         setTrainings({ ...trainings, trainings: updatedTrainings });
@@ -53,56 +53,63 @@ export default function EditTrainingList({ route, navigation }) {
                     <ActivityIndicator size="large" color="orange" />
                 </View> :
                 <View>
-                    <Text style={{ textAlign: "center", fontSize: 22, marginTop: 20 }}>
+                    <Text style={styles.editTraining}>
                         Muokkaa harjoitusta
                     </Text>
-                    <Text style={{ textAlign: "center", fontSize: 22, marginBottom: 20 }}>
+                    <Text style={styles.trainingName}>
                         {trainings.name}:
                     </Text>
                     <View style={{ alignItems: "center" }}>
                         {trainings.trainings.map((training: any, key: any) => {
                             return (
                                 <View key={key} style={styles.innerContainer}>
-                                    <Text style={{ textAlign: "center", fontSize: 22, marginBottom: 15, fontWeight: "bold" }}>
+                                    <Text style={styles.moveText}>
                                         Liike {key + 1}
                                     </Text>
-                                    <Text style={{ textAlign: "center", fontSize: 20, marginBottom: 15 }}>
+                                    <Text style={styles.moveText2}>
                                         Liikkeen nimi:
                                     </Text>
                                     <Input
                                         value={training.trainingName}
+                                        placeholder="harjoituksen nimi.."
                                         style={{ textAlign: "center" }}
-                                        onChangeText={(value) => handleInputChange(key, "trainingName", value)}
+                                        onChangeText={(value) => trainingChange(key, "trainingName", value)}
                                     />
-                                    <Text style={{ textAlign: "center", fontSize: 18, marginBottom: 10 }}>
-                                        Painot:
+                                    <Text style={styles.moveText2}>
+                                        Painot (kg):
                                     </Text>
                                     <Input
                                         value={training.weight}
+                                        placeholder="painot.."
+                                        keyboardType="numeric"
                                         style={{ textAlign: "center" }}
-                                        onChangeText={(value) => handleInputChange(key, "weight", value)}
+                                        onChangeText={(value) => trainingChange(key, "weight", value)}
                                     />
-                                    <Text style={{ textAlign: "center", fontSize: 18, marginBottom: 10 }}>
+                                    <Text style={styles.moveText2}>
                                         Toistot:
                                     </Text>
                                     <Input
                                         value={training.amount}
+                                        placeholder="toistot.."
+                                        keyboardType="numeric"
                                         style={{ textAlign: "center" }}
-                                        onChangeText={(value) => handleInputChange(key, "amount", value)}
+                                        onChangeText={(value) => trainingChange(key, "amount", value)}
                                     />
-                                    <Text style={{ textAlign: "center", fontSize: 18, marginBottom: 10 }}>
+                                    <Text style={styles.moveText2}>
                                         Toistojen määrä:
                                     </Text>
                                     <Input
                                         value={training.repetitions}
+                                        placeholder="toistojen määrä.."
+                                        keyboardType="numeric"
                                         style={{ textAlign: "center" }}
-                                        onChangeText={(value) => handleInputChange(key, "repetitions", value)}
+                                        onChangeText={(value) => trainingChange(key, "repetitions", value)}
                                     />
                                 </View>
                             )
                         })}
                     </View>
-                    <View style={{ flex: 1, alignItems: "center", justifyContent: "center", marginBottom: 30 }}>
+                    <View style={styles.saveChip}>
                         <Chip
                             title="Tallenna"
                             size="lg"

@@ -17,4 +17,19 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         width: "100%"
     },
+    newTrainingText: {
+        fontSize: 20,
+        marginBottom: 12,
+        marginTop: 30
+    },
+    moves: {
+        fontSize: 20,
+        marginBottom: 12,
+        marginTop: 15
+    },
+    spacer: {
+        marginLeft: 25,
+        marginRight: 25
+    },
+
 })

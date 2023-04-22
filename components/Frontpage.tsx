@@ -42,16 +42,16 @@ export default function Frontpage({ navigation }) {
             return todayActivities.map((item: any, key: any) => (
                 <View key={key} style={{}}>
                     {firstItem && (
-                        <Text style={{ fontSize: 20, textAlign: "center", marginBottom: 5 }}>Päivän harjoitus/harjoitukset:</Text>
+                        <Text style={styles.trainingText}>Päivän harjoitus/harjoitukset:</Text>
                     )}
-                    <Text style={{ fontSize: 20, textAlign: "center", fontWeight: "300" }}>{item.title}</Text>
+                    <Text style={styles.trainingItem}>{item.title}</Text>
                     {(firstItem = false)}
                 </View>
             ));
         } else {
             return (
                 <View>
-                    <Text style={{ fontSize: 20, textAlign: "center", fontWeight: "300" }}>Ei harjotuksia tänään</Text>
+                    <Text style={styles.trainingText}>Ei harjotuksia tänään</Text>
                 </View>
             )
         }
@@ -61,7 +61,7 @@ export default function Frontpage({ navigation }) {
         <View style={styles.container}>
             <View style={styles.dateContainer}>
                 <Text style={styles.homeText}>{`Tänään: ${d.getDate()}. ${months[d.getMonth()]}ta ${d.getFullYear()}`}</Text>
-                <View style={{ marginBottom: 205, alignItems: "center" }}>
+                <View style={styles.todaysActivity}>
                     {renderActivity()}
                 </View>
             </View>

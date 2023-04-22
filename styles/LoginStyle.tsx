@@ -28,5 +28,11 @@ export const styles = StyleSheet.create({
         marginBottom: 30,
         color: "#414141",
         textAlign: "center"
+    },
+    passwordText: {
+        textAlign: "center",
+        marginBottom: 15,
+        fontSize: 16,
+        width: "80%"
     }
 })

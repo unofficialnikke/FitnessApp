@@ -50,16 +50,16 @@ export default function TabNavi() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
-                    let iconName: React.ComponentProps<typeof Ionicons>['name'] = 'add-outline';
+                    let iconName: React.ComponentProps<typeof Ionicons>["name"] = "add-outline";
 
-                    if (route.name === 'Etusivu') {
-                        iconName = focused ? 'home' : 'home-outline';
+                    if (route.name === "Etusivu") {
+                        iconName = focused ? "home" : "home-outline";
                     } else if (route.name === 'Kalenteri') {
-                        iconName = focused ? 'calendar' : 'calendar-outline';
+                        iconName = focused ? "calendar" : "calendar-outline";
                     } else if (route.name === "Etsi liikkeitä") {
-                        iconName = focused ? 'barbell' : 'barbell-outline';
+                        iconName = focused ? "barbell" : "barbell-outline";
                     } else {
-                        iconName = focused ? 'person-circle' : 'person-circle-outline';
+                        iconName = focused ? "person-circle" : "person-circle-outline";
                     }
 
                     return <Ionicons name={iconName} size={size} color={color} />;
@@ -86,7 +86,7 @@ export default function TabNavi() {
                 headerTitleStyle: { color: "white" }
             }}
             />
-            <Tab.Screen name="Käyttäjä" component={UserPage} options={{
+            <Tab.Screen name="Käyttäjä" component={UserScreen} options={{
                 headerStyle: { backgroundColor: "orange" },
                 headerTitleStyle: { color: "white" }
             }}

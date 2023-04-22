@@ -1,4 +1,4 @@
-import { View, Text, Alert } from "react-native";
+import { View, Alert } from "react-native";
 import { styles } from "../styles/FrontpageStyle";
 import { signOut } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
