@@ -17,5 +17,9 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 125,
         fontSize: 24
+    },
+    title: {
+        fontSize: 24,
+        color: "#414141"
     }
 })

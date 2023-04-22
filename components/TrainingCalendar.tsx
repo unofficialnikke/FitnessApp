@@ -83,7 +83,7 @@ export default function TrainingCalendar() {
                                         }}
                                     />
                                     <ListItem.Content>
-                                        <ListItem.Title style={{ fontSize: 24, color: "#414141" }}>
+                                        <ListItem.Title style={styles.title}>
                                             {item.title}
                                         </ListItem.Title>
                                         <ListItem.Title style={{ fontSize: 20, }}>

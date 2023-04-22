@@ -37,7 +37,7 @@ function TrainingsScreen() {
 function UserScreen() {
     return (
         <View style={styles.container}>
-            <UserPage navigation={useNavigation} />
+            <UserPage navigation={undefined} />
         </View >
     );
 }
@@ -86,7 +86,7 @@ export default function TabNavi() {
                 headerTitleStyle: { color: "white" }
             }}
             />
-            <Tab.Screen name="Käyttäjä" component={UserScreen} options={{
+            <Tab.Screen name="Käyttäjä" component={UserPage} options={{
                 headerStyle: { backgroundColor: "orange" },
                 headerTitleStyle: { color: "white" }
             }}

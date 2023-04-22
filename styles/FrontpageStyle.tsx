@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     },
     placement: {
         alignItems: "center",
-        marginTop: 450,
+        marginTop: 150,
         fontSize: 24
     },
     trainingText: {
