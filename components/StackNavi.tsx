@@ -9,6 +9,7 @@ import ShowActivities from './ShowActivities';
 import LoginPage from './LoginPage';
 import RegistrationPage from './RegigstrationPage';
 import EditTrainingList from './EditTrainingList';
+import UserPage from './UserPage';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function StackNavi() {
             <Stack.Navigator initialRouteName="LoginPage">
                 <Stack.Screen name="TabNavi" component={TabNavi} options={{ headerShown: false }} />
                 <Stack.Screen name="Frontpage" component={Frontpage} />
+                <Stack.Screen name="UserPage" component={UserPage} />
                 <Stack.Screen name="NewTraining" component={NewTraining} options={{
                     title: "Uusi harjoitus",
                     headerStyle: { backgroundColor: "orange" },

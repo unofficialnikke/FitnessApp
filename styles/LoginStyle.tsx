@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 0.7,
+        flex: 0.9,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     innerContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: "75%"
+        width: "75%",
     },
     welcomeText: {
         fontSize: 24,
@@ -34,5 +34,17 @@ export const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 16,
         width: "80%"
+    },
+    resetView: {
+        width: "75%"
+    },
+    resetText: {
+        textAlign: "center",
+        fontSize: 16,
+        marginBottom: 10
+    },
+    resetChip: {
+        flexDirection: "row",
+        justifyContent: "center"
     }
 })

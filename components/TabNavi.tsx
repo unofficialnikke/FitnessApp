@@ -35,9 +35,11 @@ function TrainingsScreen() {
 }
 
 function UserScreen() {
+    const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
-            <UserPage navigation={undefined} />
+            <UserPage navigation={navigation} />
         </View >
     );
 }
@@ -68,7 +70,8 @@ export default function TabNavi() {
                 tabBarInactiveTintColor: "white",
                 tabBarInactiveBackgroundColor: "#414141",
                 tabBarActiveBackgroundColor: "#414141",
-                headerTitleAlign: "center"
+                headerTitleAlign: "center",
+                tabBarHideOnKeyboard: true
             })}
         >
             <Tab.Screen name="Etusivu" component={HomeScreen} options={{
@@ -86,7 +89,7 @@ export default function TabNavi() {
                 headerTitleStyle: { color: "white" }
             }}
             />
-            <Tab.Screen name="Käyttäjä" component={UserPage} options={{
+            <Tab.Screen name="Käyttäjä" component={UserScreen} options={{
                 headerStyle: { backgroundColor: "orange" },
                 headerTitleStyle: { color: "white" }
             }}

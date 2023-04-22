@@ -1,7 +1,7 @@
 import { Chip, Input, Text } from '@rneui/themed';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
-import { Alert, View } from 'react-native';
+import { Alert, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { auth } from '../config/firebaseConfig';
 import { styles } from '../styles/LoginStyle';
 import emailValidator from 'email-validator';
@@ -38,7 +38,10 @@ export default function RegistrationPage({ navigation }) {
     }
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.container}
+        >
             <Text style={styles.loginText}>Rekisteröidy käyttäjäksi FitnessAppiin</Text>
             <View style={styles.innerContainer}>
                 <Input
@@ -87,6 +90,6 @@ export default function RegistrationPage({ navigation }) {
                     type: "ionicon"
                 }}
             />
-        </View>
+        </KeyboardAvoidingView>
     )
 }
