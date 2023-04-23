@@ -5,7 +5,7 @@ import { Input, Chip, ListItem, Icon } from '@rneui/themed';
 import { styles } from "../styles/NewActivityStyle";
 import { db, auth } from '../config/firebaseConfig';
 import { addDoc, collection, doc, onSnapshot, query, where } from 'firebase/firestore';
-import RNPickerSelect from 'react-native-picker-select';
+import RNPickerSelect from 'react-native-picker-select-updated';
 import DatePicker from '@react-native-community/datetimepicker';
 
 export default function NewActivity({ navigation }) {

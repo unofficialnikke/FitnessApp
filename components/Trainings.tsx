@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image, Alert } from "react-native";
 import { styles } from "../styles/TrainingsStyle";
 import { useState } from "react";
 import { Chip, ListItem } from "@rneui/themed";
-import RNPickerSelect from 'react-native-picker-select';
+import RNPickerSelect from 'react-native-picker-select-updated';
 import config from "../config/apiConfig"
 
 export default function Trainings() {
