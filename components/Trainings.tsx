@@ -3,7 +3,6 @@ import { styles } from "../styles/TrainingsStyle";
 import { useState } from "react";
 import { Chip, ListItem } from "@rneui/themed";
 import RNPickerSelect from 'react-native-picker-select';
-import React from "react";
 import config from "../config/apiConfig"
 
 export default function Trainings() {
