@@ -20,12 +20,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "googleServicesFile": "./google-services.json"
-      }
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.Trek"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "880d182a-93c9-45a9-854a-2c305aa86a28"
+      }
     }
   }
 }
