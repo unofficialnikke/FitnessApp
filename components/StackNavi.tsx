@@ -10,6 +10,7 @@ import LoginPage from './LoginPage';
 import RegistrationPage from './RegigstrationPage';
 import EditTrainingList from './EditTrainingList';
 import UserPage from './UserPage';
+import ResetPassword from './ResetPassword';
 
 const Stack = createStackNavigator();
 
@@ -54,6 +55,12 @@ export default function StackNavi() {
                 }} />
                 <Stack.Screen name="EditTrainingList" component={EditTrainingList} options={{
                     title: "Muokkaa harjoitusta",
+                    headerStyle: { backgroundColor: "orange" },
+                    headerTitleStyle: { color: "white" },
+                    headerTitleAlign: "center"
+                }} />
+                <Stack.Screen name="ResetPassword" component={ResetPassword} options={{
+                    title: "Nollaa salasana",
                     headerStyle: { backgroundColor: "orange" },
                     headerTitleStyle: { color: "white" },
                     headerTitleAlign: "center"

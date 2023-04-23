@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
     container: {
-        flex: 0.9,
+        flex: 0.80,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     },
     input: {
         textAlign: "center",
-
+        width: "75%"
     },
     innerContainer: {
         justifyContent: 'center',
@@ -35,9 +35,6 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         width: "80%"
     },
-    resetView: {
-        width: "75%"
-    },
     resetText: {
         textAlign: "center",
         fontSize: 16,
@@ -45,6 +42,11 @@ export const styles = StyleSheet.create({
     },
     resetChip: {
         flexDirection: "row",
-        justifyContent: "center"
+        justifyContent: "center",
+    },
+    resetView: {
+        fontSize: 24,
+        marginBottom: 30,
+        color: "#414141",
     }
 })

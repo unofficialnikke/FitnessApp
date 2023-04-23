@@ -7,9 +7,7 @@ import { styles } from '../styles/LoginStyle';
 
 export default function LoginPage({ navigation }) {
     const [email, setEmail] = useState("")
-    const [emailReset, setEmailReset] = useState("")
     const [password, setPassword] = useState("")
-    const [visible, setVisible] = useState(false)
 
     const handleLogin = async () => {
         try {
@@ -21,30 +19,6 @@ export default function LoginPage({ navigation }) {
         } catch (error) {
             Alert.alert("Virhe", "Virheellinen sähköposti tai salasana")
         }
-    }
-    const resetPassword = async () => {
-        try {
-            if (emailReset) {
-                await sendPasswordResetEmail(auth, emailReset)
-                console.log("Password reset email sent succesfully")
-                Alert.alert("Onnistui", "Sähköpostiisi lähetettiin linkki salasanan nollaamista varten")
-                setEmailReset("")
-                setVisible(false)
-            } else {
-                Alert.alert("Varoitus", "Sähköpostikenttä ei voi olla tyhjä")
-            }
-        } catch (error) {
-            Alert.alert("Varoitus", "Anna kelvollien sähköposti")
-        }
-    }
-
-    const openReset = () => {
-        if (!visible) {
-            setVisible(true)
-        } else {
-            setVisible(false)
-        }
-
     }
 
     return (
@@ -113,37 +87,9 @@ export default function LoginPage({ navigation }) {
                     type="solid"
                     color="#414141"
                     onPress={() => {
-                        openReset()
+                        navigation.navigate("ResetPassword")
                     }}
                 />
-            </View>
-            <View style={styles.resetView}>
-                {visible && (
-                    <View style={{ marginTop: 20 }}>
-                        <Text style={styles.resetText}>Kirjoita sähköpostisi nollataksesi salasanasi</Text>
-                        <Input
-                            style={styles.input}
-                            placeholder="sähköpostisi.."
-                            value={emailReset}
-                            autoCapitalize="none"
-                            keyboardType="email-address"
-                            onChangeText={(t) => {
-                                setEmailReset(t)
-                            }}
-                        />
-                        <View style={styles.resetChip}>
-                            <Chip
-                                title="Nollaa salasanasi"
-                                size="md"
-                                type="solid"
-                                color="orange"
-                                onPress={() => {
-                                    resetPassword()
-                                }}
-                            />
-                        </View>
-                    </View>
-                )}
             </View>
         </KeyboardAvoidingView>
     )
