@@ -22,14 +22,14 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.Trek"
+      "package": "unofficialnikke.fitnessapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "880d182a-93c9-45a9-854a-2c305aa86a28"
+        "projectId": "98807b00-19a2-42a6-9a6b-62c29ffc9233"
       }
     }
   }
