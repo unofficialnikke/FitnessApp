@@ -40,6 +40,7 @@ export default function Trainings() {
                     setMuscle(value)}
                 prompt="Kehon osat"
             >
+                <Picker.Item label="Valitse kehon osa" color="grey" />
                 <Picker.Item label="Aerobinen" value="cardio" />
                 <Picker.Item label="Alaraajat" value="lower legs" />
                 <Picker.Item label="Käsien alavarret" value="lower arms" />

@@ -116,7 +116,8 @@ export default function NewActivity({ navigation }) {
                             setSelectedTraining(selected);
                         }
                     }}
-                    prompt="Valitse harjoitus">
+                    prompt="Harjoitukset">
+                    <Picker.Item label="Valitse harjoitus" color="grey" />
                     {trainingList.map((item: any, key: any) => (
                         <Picker.Item label={item.name} value={item.name} key={key} />
                     ))}
