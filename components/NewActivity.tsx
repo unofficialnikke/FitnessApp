@@ -5,7 +5,7 @@ import { Input, Chip, ListItem, Icon } from '@rneui/themed';
 import { styles } from "../styles/NewActivityStyle";
 import { db, auth } from '../config/firebaseConfig';
 import { addDoc, collection, doc, onSnapshot, query, where } from 'firebase/firestore';
-import RNPickerSelect from 'react-native-picker-select-updated';
+import { Picker } from '@react-native-picker/picker';
 import DatePicker from '@react-native-community/datetimepicker';
 
 export default function NewActivity({ navigation }) {
@@ -108,20 +108,19 @@ export default function NewActivity({ navigation }) {
                 />
             )}
             <View style={styles.innerContainer}>
-                <RNPickerSelect
+                <Picker
+                    selectedValue={selectedTraining?.name}
                     onValueChange={(value) => {
                         const selected = trainingList.find((item: any) => item.name === value);
                         if (selected) {
                             setSelectedTraining(selected);
                         }
                     }}
-                    placeholder={{ label: "Valitse harjoitus", color: "grey" }}
-                    items=
+                    prompt="Valitse harjoitus">
                     {trainingList.map((item: any, key: any) => (
-                        { label: item.name, value: item.name, key: key }
+                        <Picker.Item label={item.name} value={item.name} key={key} />
                     ))}
-                    value={selectedTraining?.name}
-                />
+                </Picker>
             </View>
             <View>
                 <Chip

@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image, Alert } from "react-native";
 import { styles } from "../styles/TrainingsStyle";
 import { useState } from "react";
 import { Chip, ListItem } from "@rneui/themed";
-import RNPickerSelect from 'react-native-picker-select-updated';
+import { Picker } from '@react-native-picker/picker';
 import config from "../config/apiConfig"
 
 export default function Trainings() {
@@ -34,22 +34,23 @@ export default function Trainings() {
     return (
         <ScrollView style={{ width: "100%" }}>
             <Text style={styles.chooseTrainingText}>Valitse kehon osa, jota haluat treenata:</Text>
-            <RNPickerSelect
-                onValueChange={(value) => setMuscle(value)}
-                placeholder={{ label: "Kehon osat..", color: "grey" }}
-                items={[
-                    { label: "Aerobinen", value: "cardio" },
-                    { label: "Alaraajat", value: "lower legs" },
-                    { label: "Käsien alavarret", value: "lower arms" },
-                    { label: "Niska", value: "neck" },
-                    { label: "Olkapäät", value: "shoulders" },
-                    { label: "Olkavarret", value: "upper arms" },
-                    { label: "Rinta", value: "chest" },
-                    { label: "Selkä", value: "back" },
-                    { label: "Vyötärö", value: "waist" },
-                    { label: "Yläjalat", value: "upper legs" },
-                ]}
-            />
+            <Picker
+                selectedValue={muscle}
+                onValueChange={(value) =>
+                    setMuscle(value)}
+                prompt="Kehon osat"
+            >
+                <Picker.Item label="Aerobinen" value="cardio" />
+                <Picker.Item label="Alaraajat" value="lower legs" />
+                <Picker.Item label="Käsien alavarret" value="lower arms" />
+                <Picker.Item label="Niska" value="neck" />
+                <Picker.Item label="Olkapäät" value="shoulders" />
+                <Picker.Item label="Olkavarret" value="upper arms" />
+                <Picker.Item label="Rinta" value="chest" />
+                <Picker.Item label="Selkä" value="back" />
+                <Picker.Item label="Vyötärö" value="waist" />
+                <Picker.Item label="Yläjalat" value="upper legs" />
+            </Picker>
             <View>
                 <Chip
                     size="lg"
