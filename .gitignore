@@ -9,6 +9,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+apiConfig.*
 # macOS
 .DS_Store
 # Temporary files created by Metro to check the health of the file watcher
