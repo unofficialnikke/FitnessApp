@@ -1,8 +1,8 @@
-## FitnessApp
+# FitnessApp
 
 This is a mobile application built with React Native and Expo with TypeScript, and it helps users track their fitness activities. The app integrates with Firebase for authentication and data storage.
 
-### Technologies used
+## Technologies used
 
 - **React Native:** A framework for building mobile apps with JavaScript and React, providing a native-like user interface and performance. It allows for code reuse across platforms, as it can generate native code for iOS, Android, and web.
 
