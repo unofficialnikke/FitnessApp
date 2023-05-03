@@ -4,20 +4,20 @@ This is a mobile application built with React Native and Expo with TypeScript, a
 
 ## Technologies used
 
-- **React Native:**
+- **React Native**
 
-- **Expo:**
+- **Expo**
 
-- **Firebase:**
+- **Firebase**
 
-- **React Navigation:**
+- **React Navigation**
 
-- **React Native Calendars:**
+- **React Native Calendars**
 
-- **React Native Community/Datetimepicker:** 
+- **React Native Community/Datetimepicker** 
 
-- **email-validator:** 
+- **Email-validator** 
 
-- **React Native Picker/picker:** 
+- **React Native Picker/picker** 
 
 - **ListItem** 
