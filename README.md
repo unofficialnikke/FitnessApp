@@ -13,3 +13,11 @@ This is a mobile application built with React Native and Expo with TypeScript, a
 - **React Navigation:** A library for routing and navigation in React Native apps, providing a declarative and customizable API for managing the app's screens and user flows. It supports different types of navigators, such as stack, tab, drawer, and switch, as well as deep linking and nested navigators.
 
 - **React Native Calendars:** A library for displaying calendars and date pickers in React Native apps, providing various customization options and features such as multiple months, agenda views, and event marking.
+
+- **@react-native-community/datetimepicker:** This is a community-maintained React Native component that allows you to add a date and/or time picker to your app. It provides a customizable UI for users to select a specific date and time.
+
+- **email-validator:** This is a small library that allows you to validate email addresses in your app. It provides a simple API to check whether an email address is valid or not, and it supports both simple and complex email address formats.
+
+- **React Native Picker/picker:** This is a cross-platform React Native component that allows you to add a picker (i.e., dropdown) to your app. It provides a customizable UI for users to select one or more items from a list.
+
+- **ListItem** This is a UI component that displays a single item in a list. It provides a simple API for rendering a list item with an icon, text, and/or additional content (such as a switch or checkbox). It can be used to create a variety of list-based interfaces in your app, such as menus, settings screens, and more.
