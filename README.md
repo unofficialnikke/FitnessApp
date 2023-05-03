@@ -14,7 +14,7 @@ This is a mobile application built with React Native and Expo with TypeScript, a
 
 - **React Native Calendars:** A library for displaying calendars and date pickers in React Native apps, providing various customization options and features such as multiple months, agenda views, and event marking.
 
-- **@react-native-community/datetimepicker:** This is a community-maintained React Native component that allows you to add a date and/or time picker to your app. It provides a customizable UI for users to select a specific date and time.
+- **React Native Community/Datetimepicker:** This is a community-maintained React Native component that allows you to add a date and/or time picker to your app. It provides a customizable UI for users to select a specific date and time.
 
 - **email-validator:** This is a small library that allows you to validate email addresses in your app. It provides a simple API to check whether an email address is valid or not, and it supports both simple and complex email address formats.
 
