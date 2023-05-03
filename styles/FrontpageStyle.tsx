@@ -55,15 +55,23 @@ export const styles = StyleSheet.create({
     trainingText: {
         fontSize: 20,
         textAlign: "center",
-        marginBottom: 5
+        marginBottom: 5,
     },
     trainingItem: {
         fontSize: 20,
         textAlign: "center",
-        fontWeight: "300"
+        fontWeight: "400",
+        color: "#c96f00",
+        marginBottom: 5
     },
     todaysActivity: {
         marginBottom: 205,
         alignItems: "center"
+    },
+    dialogText: {
+        fontSize: 18
+    },
+    dialogText2: {
+        fontSize: 16
     }
 })

@@ -1,15 +1,17 @@
-import { Chip } from '@rneui/themed';
+import { Chip, Dialog } from '@rneui/themed';
 import * as React from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/FrontpageStyle';
 import { db, auth } from '../config/firebaseConfig';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { Divider } from 'react-native-paper';
 
 
 export default function Frontpage({ navigation }) {
     const [activityList, setActivityList] = useState<any>([])
     const [loading, setLoading] = useState(true)
+    const [isOpen, setIsOpen] = useState(-1)
 
     const months = ["tammikuu", "helmikuu", "maaliskuu", "huhtikuu", "toukokuu", "kesäkuu",
         "heinäkuu", "elokuu", "syyskuu", "lokakuu", "marraskuu", "joulukuu"
@@ -28,6 +30,14 @@ export default function Frontpage({ navigation }) {
         }
     }, [])
 
+    const toggleDialog = (index: number) => {
+        if (isOpen === index) {
+            setIsOpen(-1)
+        } else {
+            setIsOpen(index)
+        }
+    }
+
     const renderActivity = () => {
         const todayActivities = activityList.filter((item: { date: string; }) =>
             item.date === new Date().toLocaleDateString()).slice(0, 7)
@@ -39,14 +49,38 @@ export default function Frontpage({ navigation }) {
         }
         else if (todayActivities.length > 0) {
             let firstItem = true
-            return todayActivities.map((item: any, key: any) => (
-                <View key={key} style={{}}>
+            return todayActivities.map((item: any, index: any) => (
+                <View key={index}>
                     {firstItem && (
                         <Text style={styles.trainingText}>Päivän harjoitus/harjoitukset:</Text>
                     )}
-                    <Text style={styles.trainingItem}>{item.title}</Text>
+                    <TouchableOpacity onPress={() => toggleDialog(index)}>
+                        <Text style={styles.trainingItem}>{item.title}</Text>
+                    </TouchableOpacity>
+                    {isOpen !== index ? null : (
+                        <View>
+                            <Dialog isVisible={true} onBackdropPress={() => setIsOpen(-1)}>
+                                <Dialog.Title title={item.title} />
+                                <Text style={{ fontSize: 18, marginBottom: 10 }}>{item.date}</Text>
+                                {item.training.map((item2: any, index: number) =>
+                                    item2.trainings.map((training: any, key: any) => (
+                                        <View key={key}>
+                                            <Text style={styles.dialogText}>{training.trainingName}</Text>
+                                            <View style={{ flexDirection: "row" }}>
+                                                <Text style={styles.dialogText2}>
+                                                    Painot: {training.weight}, Toistot: {training.repetitions}, Määrä: {training.amount}
+                                                </Text>
+                                            </View>
+                                            <Divider style={{ marginTop: 7, marginBottom: 7 }} />
+                                        </View>
+                                    ))
+                                )}
+                            </Dialog>
+                        </View>
+                    )}
                     {(firstItem = false)}
                 </View>
+
             ));
         } else {
             return (
