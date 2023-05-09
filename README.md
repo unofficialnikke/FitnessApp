@@ -8,7 +8,7 @@ This is a mobile application built with React Native and Expo with TypeScript, a
 
 - **Expo**
 
-- **Firebase**
+- **Firebase Firestore / Firebase Authentication** 
 
 - **React Navigation**
 
