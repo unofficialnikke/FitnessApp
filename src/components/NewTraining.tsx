@@ -32,7 +32,6 @@ export default function NewTraining({ navigation }) {
                 await updateDoc(doc(db, "trainingList", trainingListId.toString()), {
                     trainings: arrayUnion(newTraining)
                 });
-                console.log('Training added: ', newTraining);
             } catch (error) {
                 console.error('Error adding training: ', error);
             }
@@ -56,7 +55,6 @@ export default function NewTraining({ navigation }) {
             });
             {/* @ts-ignore */ }
             setTrainingListId(ref.id);
-            console.log("Training list added with ID: ", ref.id);
             Alert.alert("Onnistui!", "Harjoituslista lisätty onnistuneesti. Lisää seuraavaksi liikkeet harjoitukselle. Lopuksi paina Valmis");
         } catch (error) {
             console.error("Error adding training list: ", error);

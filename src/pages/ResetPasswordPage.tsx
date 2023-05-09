@@ -12,7 +12,6 @@ export default function ResetPassword({ navigation }) {
         try {
             if (email) {
                 await sendPasswordResetEmail(auth, email)
-                console.log("Password reset email sent succesfully")
                 Alert.alert("Onnistui!", "Sähköpostiisi lähetettiin linkki salasanan nollaamista varten")
                 setEmail("")
             } else {

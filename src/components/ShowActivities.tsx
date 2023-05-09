@@ -29,7 +29,6 @@ export default function ShowActivities({ navigation }) {
             }
             const docRef = doc(db, "activityList", activityListId)
             await deleteDoc(docRef)
-            console.log("Activity deleted succesfully!")
         } catch (error) {
             console.log("Error deleting activity: ", error)
         }

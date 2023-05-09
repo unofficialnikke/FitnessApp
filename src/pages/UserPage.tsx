@@ -23,7 +23,6 @@ export default function UserPage({ navigation }) {
 
     const signOutUser = async () => {
         await signOut(auth)
-        console.log("Succesfully signed out")
         navigation.navigate("LoginPage")
         Alert.alert("Kirjautunut ulos", "Olet kirjautunut ulos")
     }

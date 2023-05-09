@@ -1,16 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Frontpage from './Frontpage';
-import NewTraining from './NewTraining'
+import Frontpage from '../pages/Frontpage';
+import NewTraining from '../components/NewTraining'
 import TabNavi from './TabNavi';
-import ShowTrainings from './ShowTrainings';
-import NewActivity from './NewActivity';
-import ShowActivities from './ShowActivities';
-import LoginPage from './LoginPage';
-import RegistrationPage from './RegigstrationPage';
-import EditTrainingList from './EditTrainingList';
-import UserPage from './UserPage';
-import ResetPassword from './ResetPassword';
+import ShowTrainings from '../components/ShowTrainings';
+import NewActivity from '../components/NewActivity';
+import ShowActivities from '../components/ShowActivities';
+import LoginPage from '../pages/LoginPage';
+import RegistrationPage from '../pages/RegigstrationPage';
+import EditTrainingList from '../components/EditTrainingList';
+import UserPage from '../pages/UserPage';
+import ResetPassword from '../pages/ResetPasswordPage';
 
 const Stack = createStackNavigator();
 

@@ -53,7 +53,6 @@ export default function NewActivity({ navigation }) {
                 userId: auth.currentUser?.uid,
                 training: [selectedTraining]
             })
-            console.log("Activity added succesfully with ID: ", ref.id)
             Alert.alert("Onnistui", "Harjoitus lisätty kalenteriin!")
         } catch (error) {
             console.error("Error adding new activity", error)

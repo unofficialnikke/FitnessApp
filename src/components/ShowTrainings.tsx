@@ -20,14 +20,12 @@ export default function ShowTrainings({ navigation }) {
             }
             const docRef = doc(db, "trainingList", trainingListId)
             await deleteDoc(docRef)
-            console.log("Training list deleted successfully!")
         } catch (error) {
             console.log("Error deleting training list: ", error)
         }
     }
     const editTrainingList = async (trainingListId: any) => {
         setSelectedTrainingListId(trainingListId)
-
         navigation.navigate("EditTrainingList", trainingListId)
     }
 

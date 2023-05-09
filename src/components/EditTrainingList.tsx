@@ -33,7 +33,6 @@ export default function EditTrainingList({ route, navigation }) {
                 return rest;
             });
             await updateDoc(docRef, { trainings: updatedTrainings });
-            console.log("Document updated successfully");
             navigation.goBack()
         } catch (error) {
             console.error("Error updating document: ", error);

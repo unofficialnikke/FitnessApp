@@ -1,5 +1,5 @@
 import * as React from 'react';
-import StackNavi from './components/StackNavi';
+import StackNavi from './src/navigation/StackNavi';
 
 export default function App() {
 

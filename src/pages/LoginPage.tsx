@@ -14,7 +14,6 @@ export default function LoginPage({ navigation }) {
             await signInWithEmailAndPassword(auth, email, password)
             setEmail("")
             setPassword("")
-            console.log("Succesfully logged in")
             navigation.navigate("TabNavi")
         } catch (error) {
             Alert.alert("Virhe", "Virheellinen sähköposti tai salasana")

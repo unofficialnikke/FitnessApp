@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import TrainingCalendar from './TrainingCalendar';
-import Frontpage from './Frontpage';
-import Trainings from './Trainings';
-import UserPage from './UserPage';
+import TrainingCalendar from '../pages/TrainingCalendarPage';
+import Frontpage from '../pages/Frontpage';
+import Trainings from '../pages/TrainingsPage';
+import UserPage from '../pages/UserPage';
 import { View } from 'react-native';
 import { styles } from '../styles/FrontpageStyle';
 import { useNavigation } from '@react-navigation/native';
