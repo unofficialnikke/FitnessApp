@@ -4,6 +4,8 @@ This is a mobile application built with React Native and Expo with TypeScript, a
 
 ## Technologies used
 
+- **TypeScript**
+
 - **React Native**
 
 - **Expo**
